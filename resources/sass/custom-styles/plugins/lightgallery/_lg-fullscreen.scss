@@ -1,0 +1,12 @@
+.lg-fullscreen {
+  &:after {
+    content: "\e20c";
+
+    .lg-fullscreen-on & {
+      content: "\e20d";
+    }
+  }
+  @media (max-width: 479px) {
+    display: none;
+  }
+} 
