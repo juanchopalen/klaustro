@@ -12,9 +12,10 @@
 */
 Auth::routes();
 
-Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+Route::get('/logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 Route::get('/', 'FrontController@index');
 Route::get('/{any}', 'FrontController@index');
+Route::get('/blog/{any}', 'FrontController@index');
 
 

@@ -6,7 +6,7 @@
             <h3>a few words about me</h3>
             <div class="divider divider-default"></div>
             <p class="heading-5">In last years I have worked with Laravel framework for the backend, PHPUnit for test-driven development, Vue.js as javascript framework for the frontend, bootstrap and Sass for manage styles sheets</p>
-            <p>Finally using continuos integration, like Codeship or travis CI, the customer receive a quality tested product</p><a class="button button-secondary button-nina" href="about-us.html">learn more</a>
+            <p>Finally using continuos integration, like Codeship or travis CI, the customer receive a quality tested product</p><router-link class="button button-secondary button-nina" to="/blog">learn more</router-link>
           </div>
           <div class="col-md-10 col-lg-6">
             <div class="blick-wrap"><img class="image-wrap" src="images/ipad-02-718x519.png" alt="" width="718" height="519"/>

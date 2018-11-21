@@ -9,7 +9,16 @@ class PostController extends Controller
 {
     public function index()
     {
-        return Post::orderBy('id', 'desc')
+        \Log::info(request()->all());
+        return Post::search(request()->search)
+            ->byDate(request()->month, request()->year)
+            ->byCategory(request()->category)
+            ->orderBy('id', 'desc')
             ->paginate(request()->rows);
+    }
+
+    public function show($slug)
+    {
+        return Post::where('slug', $slug)->first();
     }
 }

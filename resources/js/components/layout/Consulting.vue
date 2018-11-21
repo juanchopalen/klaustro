@@ -6,7 +6,7 @@
             <div class="box-cta box-cta-inline">
               <div class="box-cta-inner">
                 <h3 class="box-cta-title">do you need a consultation?</h3>
-                <p>Brave can give you lots of advantages, from which you will surely benefit.</p>
+                <p>Ask without compromise, I will respond you soon</p>
               </div>
               <div class="box-cta-inner">
                 <router-link class="button button-secondary button-nina" to="contact" @click.native="scrollToTop">learn more</router-link>

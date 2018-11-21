@@ -13,6 +13,18 @@ class CategorySeeder extends Seeder
     public function run()
     {
         factory(Category::class)->create([
+            'name' => 'Tutorials',
+        ]);
+
+        factory(Category::class)->create([
+            'name' => 'Plugins',
+        ]);
+
+        factory(Category::class)->create([
+            'name' => 'Tips',
+        ]);
+
+        factory(Category::class)->create([
             'name' => 'Projects',
         ]);
     }

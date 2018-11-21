@@ -10,6 +10,7 @@ $factory->define(App\Post::class, function (Faker $faker) {
         'intro' => $faker->paragraph(2),
         'image' => $faker->imageUrl,
         'content' => $faker->paragraph(5),
+        'slug' => str_slug($faker->sentence),
         'category_id' => function(){
             return factory(Category::class)->create()->id;
         },

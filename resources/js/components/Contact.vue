@@ -93,11 +93,11 @@
         data(){
             return {
                 contact: {
-                    first_name: 'Juan',
-                    last_name: 'Palencia',
-                    email: 'juanchopalen@gmail.com',
-                    phone: '54 414 9900552',
-                    message: 'Test message',
+                    first_name: '',
+                    last_name: '',
+                    email: '',
+                    phone: '',
+                    message: '',
                 },
                 loading: false
             }
