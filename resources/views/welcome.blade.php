@@ -1,4 +1,4 @@
 @extends('front.index')
 @section('content')
-    <layout></layout>
+    <layout :user="{{ json_encode(auth()->user()) }}"></layout>
 @endsection

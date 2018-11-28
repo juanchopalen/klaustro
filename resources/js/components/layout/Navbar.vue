@@ -1,4 +1,6 @@
 <template>
+  <div>
+
     <header class="section page-header">
       <!-- RD Navbar-->
       <div class="rd-navbar-wrap rd-navbar-centered">
@@ -8,14 +10,29 @@
               <div class="rd-navbar-nav-wrap">
                 <ul class="rd-navbar-nav">
                   <li :class="active == 'home' ? 'active' : ''">
-                    <router-link to="/" @click.native="scrollToTop">Home</router-link>
+                    <router-link to="/" @click.native="scrollToTop" data-rd-navbar-toggle="rd-navbar">Home</router-link>
                   </li>
                   <li :class="active == 'contact' ? 'active' : ''">
-                    <router-link to="/contact" @click.native="scrollToTop">Contact</router-link>
+                    <router-link to="/contact" @click.native="scrollToTop" data-rd-navbar-toggle="rd-navbar">Contact</router-link>
                   </li>
                   <li :class="active == 'blog' || active == 'post' ? 'active' : ''">
-                    <router-link to="/blog" @click.native="scrollToTop">Blog</router-link>
+                    <router-link to="/blog" @click.native="scrollToTop" data-rd-navbar-toggle="rd-navbar">Blog</router-link>
                   </li>
+                  <li v-if="user"><a href="#">{{ user.name }}</a>
+                    <!-- RD Navbar Dropdown-->
+                    <ul class="rd-navbar-dropdown">
+                      <li><a href="/logout">Logout</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <template v-else>
+                    <li>
+                      <a href="#" data-toggle="modal" data-target="#login">Login</a>
+                    </li>
+                    <li>
+                      <a href="#" data-toggle="modal" data-target="#register">Sign up</a>
+                    </li>
+                  </template>
                 </ul>
               </div>
             </div>
@@ -29,19 +46,23 @@
             <div class="rd-navbar-collapse-toggle" data-rd-navbar-toggle=".rd-navbar-collapse"><span></span></div>
             <div class="rd-navbar-aside-right rd-navbar-collapse">
               <!-- RD Navbar Search-->
-              <router-link class="button button-sm button-default-outline button-nina" to="/contact" @click.native="scrollToTop">Book a Service</router-link>
+              <router-link class="button button-sm button-default-outline button-nina" to="/contact" @click.native="scrollToTop" data-rd-navbar-toggle="rd-navbar">Book a Service</router-link>
             </div>
           </div>
         </nav>
       </div>
     </header>
+    <register :errors="errors"></register>
+    <login :errors="errors"></login>
+  </div>
 </template>
 <script>
     export default {
+        props: ['user', 'errors'],
         computed: {
             active(){
                 return this.$route.name
-            }
+            },
         },
         methods: {
            scrollToTop() {

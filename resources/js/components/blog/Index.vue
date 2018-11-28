@@ -2,10 +2,18 @@
     <!-- Blog-->
     <section class="section section-xl bg-gray-lighter">
       <div class="container container-bigger" :class="loading ? 'loading' : ''">
+        <template v-if="user">
+          <router-link to="/blog/create-post"><h4><span class="icon novi-icon icon-md icon-primary mdi mdi-plus"></span> Add new post</h4></router-link>
+        </template>
         <div class="row row-50 row-md-90 justify-content-md-center justify-content-xl-between">
           <div class="col-md-10 col-lg-8 col-xl-7 text-center">
-            <p v-if="posts.length == 0" class="breadcrumbs-custom-subtitle">Sorry, But Posts Was not Found</p>
-            <div v-else class="row row-30">
+          <transition name="bounce" enter-active-class="bounceInLeft" leave-active-class="bounceOutRight">
+            <p v-if="posts.length == 0 && !loading" class="breadcrumbs-custom-subtitle">Sorry, But Posts Was not Found</p>
+          </transition>
+
+
+          <transition name="bounce" enter-active-class="bounceInLeft" leave-active-class="bounceOutRight">
+            <div v-if="posts.length > 0 && !loading" class="row row-30">
               <div v-for="post in posts" class="col-md-6">
                 <article class="post-blog">
                   <router-link class="post-blog-image" :to="'blog/' + post.slug"><img :src="post.image" alt="" width="420" height="305"/></router-link>
@@ -19,7 +27,8 @@
                       </ul>
                     </div>
                     <div class="post-blog-caption-body">
-                      <h5><router-link class="post-blog-title" :to="'blog/' + post.slug">{{ post.title }}</router-link></h5>
+                      <h5><router-link class="post-blog-title" :to="'blog/' + post.slug">{{ post.title }}</router-link>
+                        <a v-if="user && user.admin == 1" href="##" @click="remove(post.id)"><span class="icon novi-icon icon-md icon-secondary mdi mdi-delete" title="Delete post"></span></a></h5>
                     </div>
                     <div class="post-blog-caption-footer">
                       <time datetime="2018">{{ post.created_at | moment("MMMM Do YYYY") }}</time>
@@ -32,8 +41,9 @@
                 </article>
               </div>
             </div>
+            </transition>
             <b-pagination
-              v-if="posts.length > 0"
+              v-if="posts.length > 0 && !loading"
               :total-rows="totalRows"
               size="md"
               v-model="currentPage"
@@ -88,7 +98,8 @@
           target: '',
           currentPage: null,
           month: null,
-          category: ''
+          category: '',
+          talfi: false
         }
       },
       created(){
@@ -105,18 +116,37 @@
           this.month = null
           this.category = ''
           this.getPosts()
+          this.talfi= true
         },
         getPostByMonth(value){
+          this.category = ''
           this.month = value
           this.getPosts()
         },
         getPostByCategory(value){
+          this.month = null
           this.category = value
           this.getPosts()
         },
         getCategories(){
           let params = {rows: 5}
           this.$store.dispatch('getCategories', params)
+        },
+        remove(id){
+                this.$swal({
+                  title: 'Delete post',
+                  text: 'Are you sure?',
+                  type: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Yes',
+                  cancelButtonText: 'No',
+                }).then((result) => {
+                  if (result.value) {
+                    this.$store.dispatch('removePost', id)
+                  }
+                })
         }
       },
       computed: {
@@ -149,6 +179,9 @@
             })
           }
           return months
+        },
+        user(){
+          return this.$parent.user
         }
       }
     }

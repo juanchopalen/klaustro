@@ -1,5 +1,6 @@
 let state = {
     data: [],
+    list: [],
     perPage: null,
     currentPage: 1,
     lastPage: null,
@@ -28,6 +29,18 @@ let actions = {
                 Vue.toasted.show(error.message, {icon: 'exclamation-triangle', type: 'error'})
             })
     },
+
+    getAllCategories(context, params){
+        context.state.loading = true
+        axios.get('/api/categories-list')
+            .then(response => {
+                context.commit('getAllCategories', response.data)
+            })
+            .catch(error => {
+                context.state.loading = false
+                Vue.toasted.show(error.message, {icon: 'exclamation-triangle', type: 'error'})
+            })
+    },
 }
 
 let mutations = {
@@ -38,6 +51,9 @@ let mutations = {
         state.perPage = data.per_page
         state.data = data.data
         state.loading = false
+    },
+    getAllCategories(state, data){
+        state.list = data
     },
 }
 

@@ -1,7 +1,7 @@
 <template>
     <div>
       <div class="section-md" :class="loading ? 'loading' : ''">
-        <p class="h3-alternate">Comments</p>
+        <p v-if="comments.length > 0" class="h3-alternate">Comments</p>
         <div class="comment-group">
             <template v-for="comment in comments">
                 <!-- Comment-->
@@ -45,6 +45,7 @@
             </template>
         </div>
         <b-pagination
+          v-if="totalRows > perPage"
           :total-rows="totalRows"
           size="md"
           v-model="currentPage"
@@ -70,6 +71,9 @@
                 currentPage: null,
                 reply: null,
             }
+        },
+        created(){
+          this.getComments()
         },
         methods:{
             getComments(){

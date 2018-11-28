@@ -13,128 +13,81 @@ class PostSeeder extends Seeder
     public function run()
     {
         factory(Post::class)->create([
-            'title' => 'Edaltec Electric pole service management web application',
-            'intro' => '<p class="big">Imagine almost any situation where two or more people are gathered—a wedding reception or a job interview. What do these situations have in common? Almost all of them involve people trying to talk with each other. But in these very moments where a conversation would enhance an encounter, we often fall short.</p>',
-            'image' => '/images/landing-seo-1-570x370.jpg',
-            'content' => '<p>When small talk stalls out, it’s often due to a phenomenon we call “mirroring.” In our attempts to be polite, we often answer people’s questions directly, repeat their observations, or just blandly agree with whatever they say. Such an approach can kill your conversation in the beginning. When you “break the mirror”, you give your interlocutor a chance to move forward in your small talk.</p>
-                <p>People also tend to do a passable job at talking. We stagger through our romantic, professional and social worlds with the goal merely of not crashing, never considering that we might soar. We go home sweaty and puffy without realizing that small talks are keys to opening greater conversations. In this post, we would like to show you how you can change this. For example, you can ask open-ended questions. Aim for questions that invite people to tell stories, rather than give bland, one-word answers.</p>
-                <article class="quote-primary">
-                  <svg class="quote-primary-mark" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="35px" height="25px" viewbox="0 0 35 25">
-                    <path d="M27.461,10.206h7.5v15h-15v-15L25,0.127h7.5L27.461,10.206z M7.539,10.206h7.5v15h-15v-15L4.961,0.127h7.5                            L7.539,10.206z"></path>
-                  </svg>
-                  <div class="quote-primary-text">
-                    <p>If you mirror the opinion and language of your interlocutor, you follow the common social norm, but you also paralyze the discussion and miss a moment of fun. Instead, we recommend you to practice the art of disruption and move the dialogue forward using one of the methods described in this article.</p>
-                  </div>
-                  <p class="quote-primary-meta"><span>by</span><span class="cite">Ronald Chen</span></p>
-                </article>
-                <p>An even better way to break the boring conversation mirror is to skip over the expected response and go somewhere next-level. Even if your answer won’t concern the topic of the initial question, it will push the conversation forward. Don’t be afraid to go ahead and be bold. Upend the dinner table conversation! Turn small talk into big ideas at the next summer wedding reception you’re forced to attend! You never know which ideas will be worth spreading next and maybe breaking the ice of a small talk will end in amazing conversation.</p>',
-            'slug' => str_slug('Edaltec Electric pole service management web application'),
+            'title' => 'MiApuestaWeb - Sports Bets Web Application',
+            'intro' => '<p class="big text-justify"><a href="http://miapuestaweb.com" target="_blank">MiApuestaWeb</a> is an Sport Bet web application where users can bet a favorites sport matches, users can see any sport result. Admins can program any sport game and configure probabilities for each event and can change it in any moment. This development was made in six months. I worked like a solo fullstack Developer.</p>',
+            'image' => '/images/miapuestaweb.png',
+            'content' => '<div class="text-justify"><p><a href="http://miapuestaweb.com" target="_blank">MiApuestaWeb</a> was developed wiht Laravel 5.4 and JQuery,  I used MySQL to handle the database and, I used Bootstrap 3.7,  I used PHPUnit to test the features</p>
+              <p>This application has a back office modules, where application admins could manage all master data: Categories, Leages, Teams, Games, Users, Bets, etc.</p></div>',
+            'slug' => str_slug('MiApuestaWeb - Sports Bets Web Application'),
             'category_id' => 4,
+            'user_id' => 1,
             'created_at' => '2018-05-01',
         ]);
 
         factory(Post::class)->create([
-            'title' => 'MiAbogadoPeru Lawyer management web application',
-            'intro' => '<p class="big">Imagine almost any situation where two or more people are gathered—a wedding reception or a job interview. What do these situations have in common? Almost all of them involve people trying to talk with each other. But in these very moments where a conversation would enhance an encounter, we often fall short.</p>',
-            'image' => '/images/landing-seo-2-570x370.jpg',
-            'content' => '<p>When small talk stalls out, it’s often due to a phenomenon we call “mirroring.” In our attempts to be polite, we often answer people’s questions directly, repeat their observations, or just blandly agree with whatever they say. Such an approach can kill your conversation in the beginning. When you “break the mirror”, you give your interlocutor a chance to move forward in your small talk.</p>
-                <p>People also tend to do a passable job at talking. We stagger through our romantic, professional and social worlds with the goal merely of not crashing, never considering that we might soar. We go home sweaty and puffy without realizing that small talks are keys to opening greater conversations. In this post, we would like to show you how you can change this. For example, you can ask open-ended questions. Aim for questions that invite people to tell stories, rather than give bland, one-word answers.</p>
-                <article class="quote-primary">
-                  <svg class="quote-primary-mark" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="35px" height="25px" viewbox="0 0 35 25">
-                    <path d="M27.461,10.206h7.5v15h-15v-15L25,0.127h7.5L27.461,10.206z M7.539,10.206h7.5v15h-15v-15L4.961,0.127h7.5                            L7.539,10.206z"></path>
-                  </svg>
-                  <div class="quote-primary-text">
-                    <p>If you mirror the opinion and language of your interlocutor, you follow the common social norm, but you also paralyze the discussion and miss a moment of fun. Instead, we recommend you to practice the art of disruption and move the dialogue forward using one of the methods described in this article.</p>
-                  </div>
-                  <p class="quote-primary-meta"><span>by</span><span class="cite">Ronald Chen</span></p>
-                </article>
-                <p>An even better way to break the boring conversation mirror is to skip over the expected response and go somewhere next-level. Even if your answer won’t concern the topic of the initial question, it will push the conversation forward. Don’t be afraid to go ahead and be bold. Upend the dinner table conversation! Turn small talk into big ideas at the next summer wedding reception you’re forced to attend! You never know which ideas will be worth spreading next and maybe breaking the ice of a small talk will end in amazing conversation.</p>',
-            'slug' => str_slug('MiAbogadoPeru Lawyer management web application'),
+            'title' => 'CIRIEC - Online Courses Web Application',
+            'intro' => '<p class="big text-justify"><a href="http://cursos.ciriec-colombia.org" target="_blank">CIRIEC Colombia</a> is an On-line education web application where users can find an offer courses with diverse content. Admins can register a variety of courses in the same platform. Users can subscribe in any course and notify admins the payment. This development was made in two months. I worked like a solo fullstack Developer.</p>',
+            'image' => '/images/ciriec.png',
+            'content' => '<div class="text-justify"><p>When small talk stalls out, it’s often due to a phenomenon we call “mirroring.” In our attempts to be polite, we often answer people’s questions directly, repeat their observations, or just blandly agree with whatever they say. Such an approach can kill your conversation in the beginning. When you “break the mirror”, you give your interlocutor a chance to move forward in your small talk.</p>
+              <p>This project was developed wiht Laravel 5.7 and Vue.js 2,  I used MySQL to handle the database and, I used Bootstrap 3.7,  I used PHPUnit to test the features</p>
+              <p>This application has a back office modules, where application admins could manage all master data: Categories, Courses, Levels, Lessons, Evaluations, Cerfications, etc.</p></div>',
+            'slug' => str_slug('CIRIEC - Online Courses Web Application'),
             'category_id' => 4,
+            'user_id' => 1,
+            'created_at' => '2018-05-01',
+        ]);
+
+        factory(Post::class)->create([
+            'title' => 'MiAbogadoPeru - Lawyer management web application',
+            'intro' => '<p class="big text-justify"><a href="http://miabogadoperu.com" target="_blank">Mi Abogado Perú</a> is a web application where Lawyers can sign up and register its lawyer categories, then all users can search lawyers by category, and make law queries to all category lawyers, these queries notify all registered lawyers who can respond user`s query. This development was made in one month. I worked like a solo fullstack Developer.</p>',
+            'image' => '/images/miabogado.png',
+            'content' => '<div class="text-justify"><p><a href=”http://miabogadoperu.com”>Mi Abogado Perú</a> was developed wiht Laravel 5.6 and Vue.js 2, We used MySQL to handle the database, We used PHPUnit to test the features, We used Bootstrap 3.7, finally We used Sass to mange the styles in the Theme Template.</p>
+              <div class="text-justify"><p><a href=”http://miabogadoperu.com”>Mi Abogado Perú</a> has a back office modules, where application admins could manage all master data: Lawyers, Categories, Queries, Profile, etc.</p></div>',
+            'slug' => str_slug('MiAbogadoPeru - Lawyer management web application'),
+            'category_id' => 4,
+            'user_id' => 1,
             'created_at' => '2018-06-01',
         ]);
 
         factory(Post::class)->create([
-            'title' => 'Cadem Institute Online Education platform',
-            'intro' => '<p class="big">Imagine almost any situation where two or more people are gathered—a wedding reception or a job interview. What do these situations have in common? Almost all of them involve people trying to talk with each other. But in these very moments where a conversation would enhance an encounter, we often fall short.</p>',
-            'image' => '/images/landing-seo-3-570x370.jpg',
-            'content' => '<p>When small talk stalls out, it’s often due to a phenomenon we call “mirroring.” In our attempts to be polite, we often answer people’s questions directly, repeat their observations, or just blandly agree with whatever they say. Such an approach can kill your conversation in the beginning. When you “break the mirror”, you give your interlocutor a chance to move forward in your small talk.</p>
-                <p>People also tend to do a passable job at talking. We stagger through our romantic, professional and social worlds with the goal merely of not crashing, never considering that we might soar. We go home sweaty and puffy without realizing that small talks are keys to opening greater conversations. In this post, we would like to show you how you can change this. For example, you can ask open-ended questions. Aim for questions that invite people to tell stories, rather than give bland, one-word answers.</p>
-                <article class="quote-primary">
-                  <svg class="quote-primary-mark" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="35px" height="25px" viewbox="0 0 35 25">
-                    <path d="M27.461,10.206h7.5v15h-15v-15L25,0.127h7.5L27.461,10.206z M7.539,10.206h7.5v15h-15v-15L4.961,0.127h7.5                            L7.539,10.206z"></path>
-                  </svg>
-                  <div class="quote-primary-text">
-                    <p>If you mirror the opinion and language of your interlocutor, you follow the common social norm, but you also paralyze the discussion and miss a moment of fun. Instead, we recommend you to practice the art of disruption and move the dialogue forward using one of the methods described in this article.</p>
-                  </div>
-                  <p class="quote-primary-meta"><span>by</span><span class="cite">Ronald Chen</span></p>
-                </article>
-                <p>An even better way to break the boring conversation mirror is to skip over the expected response and go somewhere next-level. Even if your answer won’t concern the topic of the initial question, it will push the conversation forward. Don’t be afraid to go ahead and be bold. Upend the dinner table conversation! Turn small talk into big ideas at the next summer wedding reception you’re forced to attend! You never know which ideas will be worth spreading next and maybe breaking the ice of a small talk will end in amazing conversation.</p>',
-            'slug' => str_slug('Cadem Institute Online Education platform'),
+            'title' => 'Cadem Institute - Online Education platform',
+            'intro' => '<p class="big text-justify"><a href="http://cadem.klaustro.net" target="_blank">Cadem Institute</a> is an On-line education web application where users can find an offer courses with diverse content, the customer had an idea to handle on-line, presential and VR courses, We develop only on-line and presential courses, VR-course will be developed in other phase. Admins can register a variety of courses in the same platform. Users can subscribe in any course and pay with Credit card, debit card and Paypal account. This development was made in six months. We use Agile methodology and I worked like a SCRUM Master.</p>',
+            'image' => '/images/cadem.png',
+            'content' => '<div class="text-justify"><p>This project was developed wiht Laravel 5.5 and Vue.js 2, We used MySQL to handle the database and We used Bootstrap 4.0</p>
+             <p>To handle the courses subscriptions we use Braintree Gateway.</p>
+             <p>This application has a back office modules, where application admins could manage all master data: Categories, Courses, Levels, Lessons, Evaluations, Cerfications, etc.</p></div>',
+            'slug' => str_slug('Cadem Institute - Online Education platform'),
             'category_id' => 4,
+            'user_id' => 1,
             'created_at' => '2018-07-01',
         ]);
 
         factory(Post::class)->create([
-            'title' => 'Surgio Orthopedic & Spine suppliers',
-            'intro' => '<p class="big">Imagine almost any situation where two or more people are gathered—a wedding reception or a job interview. What do these situations have in common? Almost all of them involve people trying to talk with each other. But in these very moments where a conversation would enhance an encounter, we often fall short.</p>',
-            'image' => '/images/landing-seo-1-570x370.jpg',
-            'content' => '<p>When small talk stalls out, it’s often due to a phenomenon we call “mirroring.” In our attempts to be polite, we often answer people’s questions directly, repeat their observations, or just blandly agree with whatever they say. Such an approach can kill your conversation in the beginning. When you “break the mirror”, you give your interlocutor a chance to move forward in your small talk.</p>
-                <p>People also tend to do a passable job at talking. We stagger through our romantic, professional and social worlds with the goal merely of not crashing, never considering that we might soar. We go home sweaty and puffy without realizing that small talks are keys to opening greater conversations. In this post, we would like to show you how you can change this. For example, you can ask open-ended questions. Aim for questions that invite people to tell stories, rather than give bland, one-word answers.</p>
-                <article class="quote-primary">
-                  <svg class="quote-primary-mark" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="35px" height="25px" viewbox="0 0 35 25">
-                    <path d="M27.461,10.206h7.5v15h-15v-15L25,0.127h7.5L27.461,10.206z M7.539,10.206h7.5v15h-15v-15L4.961,0.127h7.5                            L7.539,10.206z"></path>
-                  </svg>
-                  <div class="quote-primary-text">
-                    <p>If you mirror the opinion and language of your interlocutor, you follow the common social norm, but you also paralyze the discussion and miss a moment of fun. Instead, we recommend you to practice the art of disruption and move the dialogue forward using one of the methods described in this article.</p>
-                  </div>
-                  <p class="quote-primary-meta"><span>by</span><span class="cite">Ronald Chen</span></p>
-                </article>
-                <p>An even better way to break the boring conversation mirror is to skip over the expected response and go somewhere next-level. Even if your answer won’t concern the topic of the initial question, it will push the conversation forward. Don’t be afraid to go ahead and be bold. Upend the dinner table conversation! Turn small talk into big ideas at the next summer wedding reception you’re forced to attend! You never know which ideas will be worth spreading next and maybe breaking the ice of a small talk will end in amazing conversation.</p>',
-            'slug' => str_slug('Surgio Orthopedic & Spine suppliers'),
+            'title' => 'Carsyagoo Cars - dealer web application',
+            'intro' => '<p class="big text-justify"><a href="https://carsyagoo.com" target="_blank">CarsYaGoo!</a> is a Car Dealer Web Aplication, where dealers can subscribe to add its own cars anouncements to show other users its deals, users can search anouncements by makes, models, prices, etc. And the result will be showed depends of user state location, this application has a blog where admins can write posts and registered user can add comments an likes. This development was made in four months. We used Agile methodology and I worked like a SCRUM Master and fullstack Developer.</p>',
+            'image' => '/images/carsyagoo.png',
+            'content' => '<div class="text-justify"><p><a href="https://carsyagoo.com" target="_blank">CarsYaGoo!</a> was developed wiht Laravel 5.7 and Vue.js 2, We used Vuex to manage the state pattern, We used MySQL to handle the database, We used PHPUnit to test the features, We used Bootstrap 4.0, finally We used Sass to mange the styles in the Theme Template.</p>
+                <p>To handle the subscriptions we use Paypal Gateway, we had some troubles triyin to deploy the project, because the paypal/rest-api-sdk-php PyPal plugin couldn`t process all credit cards, but we could handle it with omnipay/payflow plugin.</p>
+                <p>We implement Google API to handle all application addresess to use Geolocations function getting Cars Dealers Latitude and Longitude.</p>
+                <p>It was important in this project, to separate search results by states, and we use IP-API.com to get user Geolocation by IP address.</p>
+                <p>This application has a back office modules, where application admins could manage all master data: Makes, Models, Body Types, Colors, Dealers, Blog, etc.</p></div>',
+            'slug' => str_slug('Carsyagoo - Cars dealer web application'),
             'category_id' => 4,
-            'created_at' => '2018-08-01',
-        ]);
-
-        factory(Post::class)->create([
-            'title' => 'Carsyagoo Cars dealer web application',
-            'intro' => '<p class="big">Imagine almost any situation where two or more people are gathered—a wedding reception or a job interview. What do these situations have in common? Almost all of them involve people trying to talk with each other. But in these very moments where a conversation would enhance an encounter, we often fall short.</p>',
-            'image' => '/images/landing-seo-2-570x370.jpg',
-            'content' => '<p>When small talk stalls out, it’s often due to a phenomenon we call “mirroring.” In our attempts to be polite, we often answer people’s questions directly, repeat their observations, or just blandly agree with whatever they say. Such an approach can kill your conversation in the beginning. When you “break the mirror”, you give your interlocutor a chance to move forward in your small talk.</p>
-                <p>People also tend to do a passable job at talking. We stagger through our romantic, professional and social worlds with the goal merely of not crashing, never considering that we might soar. We go home sweaty and puffy without realizing that small talks are keys to opening greater conversations. In this post, we would like to show you how you can change this. For example, you can ask open-ended questions. Aim for questions that invite people to tell stories, rather than give bland, one-word answers.</p>
-                <article class="quote-primary">
-                  <svg class="quote-primary-mark" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="35px" height="25px" viewbox="0 0 35 25">
-                    <path d="M27.461,10.206h7.5v15h-15v-15L25,0.127h7.5L27.461,10.206z M7.539,10.206h7.5v15h-15v-15L4.961,0.127h7.5                            L7.539,10.206z"></path>
-                  </svg>
-                  <div class="quote-primary-text">
-                    <p>If you mirror the opinion and language of your interlocutor, you follow the common social norm, but you also paralyze the discussion and miss a moment of fun. Instead, we recommend you to practice the art of disruption and move the dialogue forward using one of the methods described in this article.</p>
-                  </div>
-                  <p class="quote-primary-meta"><span>by</span><span class="cite">Ronald Chen</span></p>
-                </article>
-                <p>An even better way to break the boring conversation mirror is to skip over the expected response and go somewhere next-level. Even if your answer won’t concern the topic of the initial question, it will push the conversation forward. Don’t be afraid to go ahead and be bold. Upend the dinner table conversation! Turn small talk into big ideas at the next summer wedding reception you’re forced to attend! You never know which ideas will be worth spreading next and maybe breaking the ice of a small talk will end in amazing conversation.</p>',
-            'slug' => str_slug('Carsyagoo Cars dealer web application'),
-            'category_id' => 4,
+            'user_id' => 1,
             'created_at' => '2018-09-01',
         ]);
 
         factory(Post::class)->create([
-            'title' => 'Soohiextensions Hair extensions ecommerce web application',
-            'intro' => '<p class="big">Imagine almost any situation where two or more people are gathered—a wedding reception or a job interview. What do these situations have in common? Almost all of them involve people trying to talk with each other. But in these very moments where a conversation would enhance an encounter, we often fall short.</p>',
-            'image' => '/images/landing-seo-3-570x370.jpg',
-            'content' => '<p>When small talk stalls out, it’s often due to a phenomenon we call “mirroring.” In our attempts to be polite, we often answer people’s questions directly, repeat their observations, or just blandly agree with whatever they say. Such an approach can kill your conversation in the beginning. When you “break the mirror”, you give your interlocutor a chance to move forward in your small talk.</p>
-                <p>People also tend to do a passable job at talking. We stagger through our romantic, professional and social worlds with the goal merely of not crashing, never considering that we might soar. We go home sweaty and puffy without realizing that small talks are keys to opening greater conversations. In this post, we would like to show you how you can change this. For example, you can ask open-ended questions. Aim for questions that invite people to tell stories, rather than give bland, one-word answers.</p>
-                <article class="quote-primary">
-                  <svg class="quote-primary-mark" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="35px" height="25px" viewbox="0 0 35 25">
-                    <path d="M27.461,10.206h7.5v15h-15v-15L25,0.127h7.5L27.461,10.206z M7.539,10.206h7.5v15h-15v-15L4.961,0.127h7.5                            L7.539,10.206z"></path>
-                  </svg>
-                  <div class="quote-primary-text">
-                    <p>If you mirror the opinion and language of your interlocutor, you follow the common social norm, but you also paralyze the discussion and miss a moment of fun. Instead, we recommend you to practice the art of disruption and move the dialogue forward using one of the methods described in this article.</p>
-                  </div>
-                  <p class="quote-primary-meta"><span>by</span><span class="cite">Ronald Chen</span></p>
-                </article>
-                <p>An even better way to break the boring conversation mirror is to skip over the expected response and go somewhere next-level. Even if your answer won’t concern the topic of the initial question, it will push the conversation forward. Don’t be afraid to go ahead and be bold. Upend the dinner table conversation! Turn small talk into big ideas at the next summer wedding reception you’re forced to attend! You never know which ideas will be worth spreading next and maybe breaking the ice of a small talk will end in amazing conversation.</p>',
-            'slug' => str_slug('Soohiextensions Hair extensions ecommerce web application'),
+            'title' => 'Soohiextensions - Hair extensions ecommerce web application',
+            'intro' => '<p class="big text-justify"><a href="https://soohiextensions.com" target="_blank">Soohi Extensions</a> is an ecommerce application to sell Hair extensions, the client wanted to handle Payments with Paypal and Shipments by USPS. Users can add extensions to shopping cart and later checkout all items. This system is able to handle different prices by quantity and type of user (Users and Stylists). This development was made in five months. We used Agile methodology and I worked like a SCRUM Master and fullstack Developer.</p>',
+            'image' => '/images/soohi.png',
+            'content' => '<div class="text-justify"><p><a href="https://soohiextensions.com" target="_blank">Soohi Extensions</a> was developed wiht Laravel 5.7 and Vue.js 2, We used Vuex to manage the state pattern, We used MySQL to handle the database, We used PHPUnit to test the features, We used Bootstrap 4.0, finally We used Sass to mange the styles in the Theme Template.</p>
+            <p>To handle the payments we use Paypal Gateway, we had some troubles triyin to deploy the project, because the paypal/rest-api-sdk-php PyPal plugin couldn`t process all credit cards, but we could handle it with omnipay/payflow plugin.</p>
+                <p>We implement Shippo API to handle all application shipments through USPS, with this API we could get shipments rates and print the USPS labels for the extensions packages that the client will ships later.</p>
+                <p>This application has a back office modules, where application admins could manage all master data: Products, Options, Prices, Coupons, Orders, Shipments, Blog, etc.</p></div>',
+            'slug' => str_slug('Soohiextensions - Hair extensions ecommerce web application'),
             'category_id' => 4,
+            'user_id' => 1,
             'created_at' => '2018-11-01',
         ]);
     }

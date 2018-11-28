@@ -6,6 +6,7 @@ import Contact from '../components/Contact.vue'
 import Error from '../components/layout/Error.vue'
 import Blog from '../components/blog/Index.vue'
 import Post from '../components/blog/Show.vue'
+import CreatePost from '../components/blog/Create.vue'
 
 Vue.use(Router)
 
@@ -26,6 +27,11 @@ let router = new Router({
             name: 'blog',
             path: '/blog',
             component: Blog
+        },
+        {
+            name: 'create-post',
+            path: '/blog/create-post',
+            component: CreatePost
         },
         {
             name: 'post',

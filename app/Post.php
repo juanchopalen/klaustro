@@ -9,7 +9,7 @@ class Post extends Model
 {
     protected $fillable = ['title', 'intro', 'image', 'content', 'category_id', 'user_id',     ];
 
-    protected $appends = ['author', 'category_name', 'comments_count',];
+    protected $appends = ['author', 'category_name', 'comments_count'];
 
     public function user()
     {
@@ -41,6 +41,7 @@ class Post extends Model
     {
         return $this->comments->count();
     }
+
     /**
      * Method to search by any column
      * @param  Query $query

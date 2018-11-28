@@ -22,14 +22,15 @@
   </head>
   <body>
     <div id="app">
-
       <!-- Page preloader-->
         @include('front.loader')
       <!-- Page-->
       <div class="page">
         <!-- Page Header-->
-        <navbar></navbar>
-
+          <navbar
+            :user="{{ json_encode(auth()->user()) }}"
+            :errors="{{ $errors }}"
+          ></navbar>
         <!-- Content -->
         @yield('content')
 

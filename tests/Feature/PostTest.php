@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Category;
 use App\Post;
+use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -93,5 +94,74 @@ class PostTest extends TestCase
         $this->get('/api/post/searched-post')
             ->assertSuccessful()
             ->assertSee($post->title);
+    }
+
+    /** @test */
+    function if_post_is_stored()
+    {
+        $user = factory(User::class)->create();
+
+        $this->actingAs($user);
+
+        $category = factory(Category::class)->create();
+
+        $this->post('/api/post', [
+            'title' => 'Post Title',
+            'intro' => '<h1>Post Intro</h1>',
+            'content' => '<p>Post content</p>',
+            'category_id' => $category->id,
+            'user_id' => $user->id,
+        ])->assertSuccessful()
+        ->assertJson(['message' => 'Post stored successful']);
+
+        $this->assertDatabaseHas('posts', [
+            'title' => 'Post Title',
+            'intro' => '<h1>Post Intro</h1>',
+            'content' => '<p>Post content</p>',
+            'slug' => 'post-title',
+            'category_id' => $category->id,
+        ]);
+    }
+
+    /** @test */
+    function if_post_is_updated()
+    {
+        $user = factory(User::class)->create();
+
+        $this->actingAs($user);
+
+        $post = factory(Post::class)->create();
+
+        $this->put('/api/post/' . $post->id, [
+            'title' => 'Post Title',
+            'intro' => '<h1>Post Intro</h1>',
+            'content' => '<p>Post content</p>',
+            'category_id' => $post->category->id,
+        ])->assertSuccessful()
+        ->assertJson(['message' => 'Post updated successful']);
+
+        $this->assertDatabaseHas('posts', [
+            'title' => 'Post Title',
+            'intro' => '<h1>Post Intro</h1>',
+            'content' => '<p>Post content</p>',
+            'slug' => 'post-title'
+        ]);
+    }
+    /** @test */
+    function if_post_is_deleted()
+    {
+        $user = factory(User::class)->create();
+
+        $this->actingAs($user);
+
+        $post = factory(Post::class)->create();
+
+        $this->delete('/api/post/' . $post->id)
+            ->assertSuccessful()
+            ->assertJson(['message' => 'Post deleted successful']);
+
+        $this->assertDatabaseMissing('posts',[
+            'id' => $post->id,
+        ]);
     }
 }

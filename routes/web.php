@@ -11,6 +11,7 @@
 |
 */
 Auth::routes();
+Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::get('/logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 

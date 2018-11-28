@@ -31,14 +31,19 @@ let actions = {
 
     storeComment(context, payload){
         context.state.loading = true
-        axios.post('/api/comment', payload)
-            .then(response => {
-                context.commit('storeComment')
-            })
-            .catch(error => {
-                context.state.loading = false
-                Vue.toasted.show(error.message, {icon: 'exclamation-triangle', type: 'error'})
-            })
+        return new Promise((resolve, reject) => {
+            axios.post('/api/comment', payload)
+                .then(response => {
+                    resolve()
+                    context.commit('storeComment')
+                    Vue.toasted.show(response.data.message, {type: 'success'})
+                })
+                .catch(error => {
+                    reject()
+                    context.state.loading = false
+                    Vue.toasted.show(error.message, {icon: 'exclamation-triangle', type: 'error'})
+                })
+        })
     }
 }
 

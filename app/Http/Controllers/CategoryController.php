@@ -10,6 +10,12 @@ class CategoryController extends Controller
     public function index()
     {
         return Category::orderBy('id', 'DESC')
+                ->has('posts')
                 ->paginate(request()->rows);
+    }
+
+    public function list()
+    {
+        return Category::orderBy('name')->get();
     }
 }

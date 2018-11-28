@@ -52,14 +52,23 @@
         methods: {
             store(){
                 this.$store.dispatch('storeComment', this.comment)
-                this.$emit('submited')
+                    .then(response => {
+                        this.clear()
+                        this.$emit('submited')
+                    })
             },
             cancel(){
                 this.$emit('submited')
+                this.clear()
             },
             validString(value){
                 return value.length > 3
             },
+            clear(){
+                this.comment.name = ''
+                this.comment.email = ''
+                this.comment.message = ''
+            }
         },
         computed: {
             validForm(){
@@ -71,6 +80,13 @@
                 var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                 return re.test(String(this.comment.email).toLowerCase());
             },
+        },
+        watch: {
+            post_id(val){
+                if (val) {
+                    this.comment.post_id = val
+                }
+            }
         }
     }
 </script>

@@ -2,6 +2,8 @@ import router from './router'
 import store from './store'
 import Toasted from 'vue-toasted';
 import BootstrapVue from 'bootstrap-vue'
+import wysiwyg from "vue-wysiwyg";
+import VueSweetalert2 from 'vue-sweetalert2';
 
 require('./bootstrap');
 
@@ -24,12 +26,18 @@ Vue.component('tools', require('./components/layout/Tools.vue'));
 Vue.component('spinner', require('./components/helpers/Spinner.vue'));
 Vue.component('comments', require('./components/blog/comment/Index.vue'));
 Vue.component('create-comment', require('./components/blog/comment/Create.vue'));
+Vue.component('upload-image', require('./components/helpers/UploadImage.vue'));
+Vue.component('modal', require('./components/helpers/Modal.vue'));
+Vue.component('register', require('./components/auth/Register.vue'));
+Vue.component('login', require('./components/auth/Login.vue'));
 
 
-//Vue Moment
+//Vendor Components
 Vue.use(require('vue-moment'))
 Vue.use(Toasted,  {duration: 3000, iconPack : 'fontawesome', theme: 'bubble'})
 Vue.use(BootstrapVue);
+Vue.use(wysiwyg, {});
+Vue.use(VueSweetalert2)
 
 const app = new Vue({
     el: '#app',

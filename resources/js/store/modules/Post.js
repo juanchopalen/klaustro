@@ -18,35 +18,83 @@ let getters = {
 }
 
 let actions = {
-    getPosts(context, params){
+    getPosts(context, payload){
         context.state.loading = true
         let month = ''
         let year = ''
-        if (params.month) {
-            month = params.month.value
-            year = params.month.year
+        if (payload.month) {
+            month = payload.month.value
+            year = payload.month.year
         }
-        axios.get('/api/posts?page=' + params.page + '&search=' + params.target + '&month=' + month + '&year=' + year + '&category=' + params.category + '&rows='  + params.rows)
+        axios.get('/api/posts?page=' + payload.page + '&search=' + payload.target + '&month=' + month + '&year=' + year + '&category=' + payload.category + '&rows='  + payload.rows)
             .then(response => {
                 context.commit('getPosts', {data: response.data})
                 context.state.loading = false
             })
             .catch(error => {
                 Vue.toasted.show(error.message, {icon: 'exclamation-triangle', type: 'error'})
+                context.state.loading = false
             })
     },
 
-    getPost(context, params){
+    getPost(context, payload){
         context.state.loading = true
-        axios.get('/api/post/' + params.slug)
+        axios.get('/api/post/' + payload.slug)
             .then(response => {
                 context.commit('getPost', {data: response.data})
                 context.state.loading = false
             })
             .catch(error => {
                 Vue.toasted.show(error.message, {icon: 'exclamation-triangle', type: 'error'})
+                context.state.loading = false
             })
     },
+
+    storePost(context, payload){
+        context.state.loading = true
+        return new Promise((resolve, reject) => {
+            axios.post('/api/post', payload)
+                .then(response => {
+                    context.commit('storePost', response.data.post)
+                    Vue.toasted.show(response.data.message, {type: 'success'})
+                    context.state.loading = false
+                    resolve()
+                })
+                .catch(error => {
+                    Vue.toasted.show(error.message, {icon: 'exclamation-triangle', type: 'error'})
+                    context.state.loading = false
+                    reject()
+                })
+
+        })
+    },
+
+    updatePost(context, payload){
+        context.state.loading = true
+        axios.put('/api/post/' + payload.id, payload)
+            .then(response => {
+                context.commit('updatePost', response.data.post)
+                Vue.toasted.show(response.data.message, {type: 'success'})
+                context.state.loading = false
+            })
+            .catch(error => {
+                Vue.toasted.show(error.message, {icon: 'exclamation-triangle', type: 'error'})
+                context.state.loading = false
+            })
+    },
+    removePost(context, id){
+        context.state.loading = true
+        axios.delete('/api/post/' + id)
+            .then(response => {
+                context.commit('removePost', id)
+                Vue.toasted.show(response.data.message, {type: 'success'})
+                context.state.loading = false
+            })
+            .catch(error => {
+                Vue.toasted.show(error.message, {icon: 'exclamation-triangle', type: 'error'})
+                context.state.loading = false
+            })
+    }
 }
 
 let mutations = {
@@ -60,6 +108,18 @@ let mutations = {
 
     getPost(state, {data}){
         state.solo = data;
+    },
+
+    storePost(state, payload){
+        state.loading = false
+    },
+
+    updatePost(state, payload){
+        let index = state.solo = payload
+    },
+    removePost(state, id){
+        let index = state.data.findIndex(post => post.id == id)
+        state.data.splice(index, 1)
     },
 }
 
