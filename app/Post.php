@@ -9,7 +9,7 @@ class Post extends Model
 {
     protected $fillable = ['title', 'intro', 'image', 'content', 'category_id', 'user_id',     ];
 
-    protected $appends = ['author', 'category_name', 'comments_count'];
+    protected $appends = ['title', 'intro', 'content', 'author', 'category_name', 'comments_count'];
 
     public function user()
     {
@@ -26,6 +26,28 @@ class Post extends Model
         return $this->hasMany(Comment::class);
     }
 
+    /**
+     * Get the row for the post.
+     */
+    public function row()
+    {
+        return $this->morphOne(Row::class, 'rowable');
+    }
+
+    protected function language()
+    {
+        $lang = Language::where('code', \Lang::locale())->first();
+        return $lang ? $lang : Language::first();
+    }
+
+    /**
+     * Get Post translations
+     **/
+    public function getTranslationsAttribute()
+    {
+        return $this->row->translations;
+    }
+
     public function getAuthorAttribute()
     {
         return $this->user->name;
@@ -40,6 +62,64 @@ class Post extends Model
     public function getCommentsCountAttribute()
     {
         return $this->comments->count();
+    }
+
+    /**
+     * Title form Translation
+     **/
+    public function getTitleAttribute()
+    {
+        $translations = $this->translations
+            ->where('language_id', $this->language()->id)
+            ->where('key', 'title')
+            ->first();
+
+        if (! $translations) {
+            $translations = $this->translations
+                ->where('language_id', 1)
+                ->where('key', 'title')
+                ->first();
+        }
+
+        return $translations->value;
+    }
+    /**
+     * Title form Translation
+     **/
+    public function getIntroAttribute()
+    {
+        $translations = $this->translations
+            ->where('language_id', $this->language()->id)
+            ->where('key', 'intro')
+            ->first();
+
+        if (! $translations) {
+            $translations = $this->translations
+                ->where('language_id', 1)
+                ->where('key', 'intro')
+                ->first();
+        }
+
+        return $translations->value;
+    }
+    /**
+     * Title form Translation
+     **/
+    public function getContentAttribute()
+    {
+        $translations = $this->translations
+            ->where('language_id', $this->language()->id)
+            ->where('key', 'content')
+            ->first();
+
+        if (! $translations) {
+            $translations = $this->translations
+                ->where('language_id', 1)
+                ->where('key', 'content')
+                ->first();
+        }
+
+        return $translations->value;
     }
 
     /**

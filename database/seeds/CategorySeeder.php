@@ -1,6 +1,8 @@
 <?php
 
 use App\Category;
+use App\Row;
+use App\Translation;
 use Illuminate\Database\Seeder;
 
 class CategorySeeder extends Seeder
@@ -12,20 +14,60 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        factory(Category::class)->create([
-            'name' => 'Tutorials',
-        ]);
+        $category = factory(Category::class)->create();
+        $category->row()->save(new Row);
+        $category->row->translations()->save(Translation::create([
+            'language_id' => 1,
+            'key' => 'name',
+            'value' => 'Tutorials',
+        ]));
 
-        factory(Category::class)->create([
-            'name' => 'Plugins',
-        ]);
+        $category->row->translations()->save(Translation::create([
+            'language_id' => 2,
+            'key' => 'name',
+            'value' => 'Tutoriales',
+        ]));
 
-        factory(Category::class)->create([
-            'name' => 'Tips',
-        ]);
+        $category = factory(Category::class)->create();
+        $category->row()->save(new Row);
+        $category->row->translations()->save(Translation::create([
+            'language_id' => 1,
+            'key' => 'name',
+            'value' => 'Plugins',
+        ]));
 
-        factory(Category::class)->create([
-            'name' => 'Projects',
-        ]);
+        $category->row->translations()->save(Translation::create([
+            'language_id' => 2,
+            'key' => 'name',
+            'value' => 'Componentes',
+        ]));
+
+        $category = factory(Category::class)->create();
+        $category->row()->save(new Row);
+        $category->row->translations()->save(Translation::create([
+            'language_id' => 1,
+            'key' => 'name',
+            'value' => 'Tips',
+        ]));
+
+        $category->row->translations()->save(Translation::create([
+            'language_id' => 2,
+            'key' => 'name',
+            'value' => 'Consejos',
+        ]));
+
+        $category = factory(Category::class)->create();
+        $category->row()->save(new Row);
+        $category->row->translations()->save(Translation::create([
+            'language_id' => 1,
+            'key' => 'name',
+            'value' => 'Projects',
+        ]));
+
+        $category->row->translations()->save(Translation::create([
+            'language_id' => 2,
+            'key' => 'name',
+            'value' => 'Proyectos',
+        ]));
     }
 }
