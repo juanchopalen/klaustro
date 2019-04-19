@@ -39,6 +39,29 @@ Vue.use(BootstrapVue);
 Vue.use(wysiwyg, {});
 Vue.use(VueSweetalert2)
 
+//Utilities
+window.translate = function(model, key){
+    let language_id = store.getters.getLanguageId
+    let translation = model.row.translations.find(translate => translate.language_id === language_id && translate.key === key)
+
+    if (!translation) {
+        translation = model.row.translations.find(translate => translate.language_id === 1 && translate.key === key)
+    }
+
+    return translation.value
+}
+
+Vue.prototype.translate = function(model, key){
+    let language_id = store.getters.getLanguageId
+    let translation = model.row.translations.find(translate => translate.language_id === language_id && translate.key === key)
+
+    if (!translation) {
+        translation = model.row.translations.find(translate => translate.language_id === 1 && translate.key === key)
+    }
+
+    return translation.value
+}
+
 const app = new Vue({
     el: '#app',
     router,

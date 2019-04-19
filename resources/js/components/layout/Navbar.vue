@@ -46,7 +46,16 @@
             <div class="rd-navbar-collapse-toggle" data-rd-navbar-toggle=".rd-navbar-collapse"><span></span></div>
             <div class="rd-navbar-aside-right rd-navbar-collapse">
               <!-- RD Navbar Search-->
-              <router-link class="button button-sm button-default-outline button-nina" to="/contact" @click.native="scrollToTop" data-rd-navbar-toggle="rd-navbar">Book a Service</router-link>
+                <ul class="rd-navbar-nav">
+                  <li><a href="#" class="text-upper">{{ currentLang.code }} <span class="icon novi-icon icon-md icon-primary mdi mdi-web"></span></a>
+                    <!-- RD Navbar Dropdown-->
+                    <ul class="rd-navbar-dropdown">
+                      <li v-for="language in languages">
+                        <a href="#" @click="setLanguage(language.id)">{{ language.name }}</a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
             </div>
           </div>
         </nav>
@@ -63,11 +72,31 @@
             active(){
                 return this.$route.name
             },
+            languages(){
+              return this.$store.getters.getLanguages
+            },
+            currentLang(){
+              return this.languages.find( lang => lang.id === this.$store.getters.getLanguageId )
+            }
+        },
+        created(){
+            this.$store.dispatch('getLanguages')
+              .then(response => {
+                if (this.$store.getters.getLanguageId == null) {
+                  let current = this.$store.getters.getLanguages.find(language => language.active === true)
+                  this.$store.dispatch('setLanguageId', current.id)
+                }
+              })
+
         },
         methods: {
+          setLanguage(id){
+            this.$store.dispatch('setLanguageId', id)
+            this.scrollToTop()
+          },
            scrollToTop() {
                 window.scrollTo(0,0);
            }
-        }
+        },
     }
 </script>

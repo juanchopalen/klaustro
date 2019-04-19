@@ -5,7 +5,7 @@
             <div v-if="post" class="col-lg-10 col-xl-8 col-xxl-6 sections-collapsable single-post-wrap">
               <article class="post-blog-article">
                 <template v-if="! editing">
-                <p class="post-blog-article-title">{{ post.title }}
+                <p class="post-blog-article-title">{{ translate(post, 'title') }}
                   <template v-if="canEdit">
                     <a @click="edit" href="#" title="Edit"><span class="icon novi-icon icon-md icon-primary mdi mdi-pencil"></span></a>
                   </template>
@@ -22,11 +22,11 @@
                     </div>
                   </li>
                 </ul>
-                  <p v-html="post.intro"></p>
+                  <p v-html="translate(post, 'intro')"></p>
                   <p class="text-center">
                     <img href="#" :src="post.image" alt="" width="870" height="580"/>
                   </p>
-                  <p v-html="post.content"></p>
+                  <p v-html="translate(post, 'content')"></p>
                 </template>
                 <template v-else>
                   <p>
@@ -81,6 +81,7 @@
               title: '',
               intro: '',
               content: '',
+              language_id: null,
             },
             editing: false,
           }
@@ -94,6 +95,7 @@
             //Clone post
             this.$store.dispatch('getAllCategories')
             this.draft = JSON.parse(JSON.stringify(this.post))
+            this.draft.language_id = this.$store.getters.getLanguageId
             this.editing = true
           },
           store(){

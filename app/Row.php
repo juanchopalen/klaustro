@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Row extends Model
 {
+    protected $fillable = [ 'rowable_type', 'rowable_id',];
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/

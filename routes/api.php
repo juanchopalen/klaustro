@@ -30,3 +30,5 @@ Route::post('comment', 'CommentController@store')->name('api.comment.store');
 
 Route::get('categories', 'CategoryController@index')->name('api.category.index');
 Route::get('categories-list', 'CategoryController@list')->name('api.category.list');
+
+Route::get('language', 'LanguageController@index')->name('api.language.index');

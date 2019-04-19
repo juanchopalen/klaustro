@@ -20,14 +20,14 @@
                   <div class="post-blog-caption">
                     <div class="post-blog-caption-header">
                       <ul class="post-blog-tags">
-                        <li><router-link class="button-tags" :to="'blog/' + post.slug">{{ post.category_name }}</router-link></li>
+                        <li><router-link class="button-tags" :to="'blog/' + post.slug">{{ translate(post.category, 'name') }}</router-link></li>
                       </ul>
                       <ul class="post-blog-meta">
                         <li><span>by</span>&nbsp;<a href="#">{{ post.author }}</a></li>
                       </ul>
                     </div>
                     <div class="post-blog-caption-body">
-                      <h5><router-link class="post-blog-title" :to="'blog/' + post.slug">{{ post.title }}</router-link>
+                      <h5><router-link class="post-blog-title" :to="'blog/' + post.slug">{{ translate(post, 'title') }}</router-link>
                         <a v-if="user && user.admin == 1" href="##" @click="remove(post.id)"><span class="icon novi-icon icon-md icon-secondary mdi mdi-delete" title="Delete post"></span></a></h5>
                     </div>
                     <div class="post-blog-caption-footer">
@@ -147,7 +147,7 @@
                     this.$store.dispatch('removePost', id)
                   }
                 })
-        }
+        },
       },
       computed: {
         posts(){

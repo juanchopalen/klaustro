@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Row;
+use App\Translation;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -36,21 +38,39 @@ class PostController extends Controller
         }
 
         $post = new Post;
-        $post->title = request()->title;
-        $post->intro = request()->intro;
         $post->image = is_array(request()->image)
                         ? $folder . $file_name
                         : '';
-        $post->content = request()->content;
         $post->slug = str_slug(request()->title);
         $post->category_id = request()->category_id;
         $post->user_id = request()->user_id;
         $post->save();
 
+        $this->storeTranslations($post);
+
         return [
             'message' => 'Post stored successful',
             'post' => $post,
         ];
+    }
+
+    protected function storeTranslations(Post $post)
+    {
+        if (request()->method() == 'POST') {
+            $post->row()->save(new Row);
+        } else {
+            $post->row->translations()->where('language_id', request()->language_id)->delete();
+        }
+
+        $keys = ['title', 'intro', 'content'];
+
+        foreach ($keys as $key) {
+            $post->row->translations()->create([
+                'language_id' => request()->language_id,
+                'key' => $key,
+                'value' => request()[$key],
+            ]);
+        }
     }
 
     public function update($id)
@@ -68,15 +88,14 @@ class PostController extends Controller
         }
 
         $post = Post::find($id);
-        $post->title = request()->title;
-        $post->intro = request()->intro;
         $post->image = is_array(request()->image)
                         ? $folder . $file_name
                         : request()->image;
-        $post->content = request()->content;
         $post->slug = str_slug(request()->title);
         $post->category_id = request()->category_id;        $post->slug = str_slug(request()->title);
         $post->save();
+
+        $this->storeTranslations($post);
 
         return [
             'message' => 'Post updated successful',

@@ -51,6 +51,7 @@
                     content: '',
                     category_id: null,
                     user_id: this.$parent.user.id,
+                    language_id: 1,
                 }
             }
         },
