@@ -32,3 +32,5 @@ Route::get('categories', 'CategoryController@index')->name('api.category.index')
 Route::get('categories-list', 'CategoryController@list')->name('api.category.list');
 
 Route::get('language', 'LanguageController@index')->name('api.language.index');
+
+Route::get('page', 'PageController@index')->name('api.page.index');

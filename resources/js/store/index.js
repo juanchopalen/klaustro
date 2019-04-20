@@ -4,7 +4,8 @@ import Vuex from 'vuex'
 import Category from './modules/Category.js'
 import Post from './modules/Post.js'
 import Comment from './modules/Comment.js'
-import Translation from './modules/Translation.js'
+import Language from './modules/Language.js'
+import Page from './modules/Page.js'
 import createPersistedState from 'vuex-persistedstate'
 
 Vue.use(Vuex)
@@ -14,7 +15,8 @@ let store = new Vuex.Store({
         Category,
         Post,
         Comment,
-        Translation,
+        Language,
+        Page,
     },
     plugins:[
         createPersistedState()

@@ -12,5 +12,7 @@
 
         <tools></tools>
 
+        <foot></foot>
+
     </div>
 </template>

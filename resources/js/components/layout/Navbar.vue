@@ -10,10 +10,10 @@
               <div class="rd-navbar-nav-wrap">
                 <ul class="rd-navbar-nav">
                   <li :class="active == 'home' ? 'active' : ''">
-                    <router-link to="/" @click.native="scrollToTop" data-rd-navbar-toggle="rd-navbar">Home</router-link>
+                    <router-link to="/" @click.native="scrollToTop" data-rd-navbar-toggle="rd-navbar">{{ translate(home, 'navbar_home') }}</router-link>
                   </li>
                   <li :class="active == 'contact' ? 'active' : ''">
-                    <router-link to="/contact" @click.native="scrollToTop" data-rd-navbar-toggle="rd-navbar">Contact</router-link>
+                    <router-link to="/contact" @click.native="scrollToTop" data-rd-navbar-toggle="rd-navbar">{{ translate(home, 'navbar_contact') }}</router-link>
                   </li>
                   <li :class="active == 'blog' || active == 'post' ? 'active' : ''">
                     <router-link to="/blog" @click.native="scrollToTop" data-rd-navbar-toggle="rd-navbar">Blog</router-link>
@@ -21,16 +21,16 @@
                   <li v-if="user"><a href="#">{{ user.name }}</a>
                     <!-- RD Navbar Dropdown-->
                     <ul class="rd-navbar-dropdown">
-                      <li><a href="/logout">Logout</a>
+                      <li><a href="/logout">{{ translate(home, 'navbar_logout') }}</a>
                       </li>
                     </ul>
                   </li>
                   <template v-else>
                     <li>
-                      <a href="#" data-toggle="modal" data-target="#login">Login</a>
+                      <a href="#" data-toggle="modal" data-target="#login">{{ translate(home, 'navbar_login') }}</a>
                     </li>
                     <li>
-                      <a href="#" data-toggle="modal" data-target="#register">Sign up</a>
+                      <a href="#" data-toggle="modal" data-target="#register">{{ translate(home, 'navbar_signup') }}</a>
                     </li>
                   </template>
                 </ul>
@@ -51,7 +51,7 @@
                     <!-- RD Navbar Dropdown-->
                     <ul class="rd-navbar-dropdown">
                       <li v-for="language in languages">
-                        <a href="#" @click="setLanguage(language.id)">{{ language.name }}</a>
+                        <a href="##" @click="setLanguage(language.id)">{{ language.name }}</a>
                       </li>
                     </ul>
                   </li>
@@ -77,6 +77,9 @@
             },
             currentLang(){
               return this.languages.find( lang => lang.id === this.$store.getters.getLanguageId )
+            },
+            home(){
+              return this.$store.getters.getPage('home')
             }
         },
         created(){
@@ -87,12 +90,11 @@
                   this.$store.dispatch('setLanguageId', current.id)
                 }
               })
-
+              this.$store.dispatch('getPages')
         },
         methods: {
           setLanguage(id){
             this.$store.dispatch('setLanguageId', id)
-            this.scrollToTop()
           },
            scrollToTop() {
                 window.scrollTo(0,0);

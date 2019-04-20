@@ -1,19 +1,19 @@
 <template>
     <modal name="login" :autoshow="autoshow">
-        <template slot="title">login</template>
+        <template slot="title">{{ translate(auth, 'login') }}</template>
         <img slot="image" src="images/tucacas-way.jpg" alt="" width="510" height="807"/>
         <form method="POST" action="/login" slot="body">
             <input type="hidden" name="_token" :value="token">
             <div class="form-wrap form-wrap-validation">
-              <input v-model="email" class="form-input" type="email" name="email" placeholder="E-mail">
+              <input v-model="email" class="form-input" type="email" name="email" :placeholder="translate(auth, 'email')">
               <strong v-if="errors && errors.email" style="color: red">{{ errors.email[0] }}</strong>
             </div>
             <div class="form-wrap form-wrap-validation">
-              <input v-model="password" class="form-input" type="password" name="password" placeholder="Password">
+              <input v-model="password" class="form-input" type="password" name="password" :placeholder="translate(auth, 'password')">
               <strong v-if="errors && errors.password" style="color: red">{{ errors.password[0] }}</strong>
             </div>
             <div class="form-button">
-              <button :disabled="! validForm" class="button button-block button-secondary button-nina" type="submit">Sign In</button>
+              <button :disabled="! validForm" class="button button-block button-secondary" type="submit">{{ translate(auth, 'button') }}</button>
             </div>
         </form>
     </modal>
@@ -45,6 +45,9 @@
             },
             validPassword(){
                 return this.password.length > 5
+            },
+            auth(){
+              return this.$store.getters.getPage('auth')
             }
         }
     }

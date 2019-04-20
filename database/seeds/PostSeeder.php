@@ -277,5 +277,16 @@ class PostSeeder extends Seeder
             'key' => 'title',
             'value' => 'Whitebeach - Aplicación web de Bar y Reastaurante',
         ]);
+        $post->row->translations()->create([
+            'language_id' => 2,
+            'key' =>'intro',
+            'value' => '<p class="big text-justify"><a href="http://demo.whitebeachgolfoaranci.com/" target="_blank">Whitebeach</a> Es una aplicación de restaurante multilingüe. Los usuarios pueden agregar platos, actividades de alquiler, fotos a galerías, servicios y editar páginas legales. Este desarrollo se realizó en dos meses. Utilizamos la metodología Agile y trabajé como Senior Fullstack Developer.</p>',
+        ]);
+        $post->row->translations()->create([
+            'language_id' => 2,
+            'key' => 'content',
+            'value' => '<div class="text-justify"><p><a href="http://demo.whitebeachgolfoaranci.com/" target="_blank">Whitebeach</a> fue desarrollado con Laravel 5.8 y Vue.js 2, usamos Vuex para administrar el patrón de estado, usamos MySQL para manejar la base de datos, usamos Vuetify, finalmente usamos Sass para administrar los estilos en la plantilla de tema</p>
+                <p>Esta aplicación tiene módulos de back office, donde los administradores de la aplicación pueden gestionar todos los datos maestros: productos de restauración, actividades de alquiler, galerías, servicios, usuarios de boletines, reservas de tablas, etiquetas de idiomas, contactos de visitantes, editar páginas legales, etc.</p>',
+        ]);
     }
 }

@@ -1,7 +1,7 @@
 <template>
 <section class="section section-lg text-center bg-default novi-background bg-cover">
   <div class="container container-wide">
-    <h3>Tools</h3>
+    <h3>{{ translate(home, 'tools_title') }}</h3>
     <div class="divider divider-default"></div>
     <div class="row row-50 row-xxl-90 justify-content-sm-center" data-lightgallery="group">
       <div v-for="tool in tools" class="col-sm-12 col-md-6 col-lg-4"><a :href="tool.url" target="_blank">
@@ -19,41 +19,44 @@
 </template>
 <script>
     export default {
-        data(){
-            return {
-                tools: [
-                    {
-                        title: 'PHP: Scripting Language',
-                        image: 'images/php.png',
-                        url: 'http://php.net/',
-                    },
-                    {
-                        title: 'Laravel: PHP framework',
-                        image: 'images/laravel.png',
-                        url: 'https://laravel.com/',
-                    },
-                    {
-                        title: 'Vue.js: Javascript Framework',
-                        image: 'images/vue.png',
-                        url: 'https://vuejs.org',
-                    },
-                    {
-                        title: 'Bootstrap: HTML, CSS and Javascript Framework',
-                        image: 'images/bootstrap.png',
-                        url: 'https://getbootstrap.com/',
-                    },
-                    {
-                        title: 'Git: Version Control System',
-                        image: 'images/git.png',
-                        url: 'https://git-scm.com/',
-                    },
-                    {
-                        title: 'PHPUnit: Unit Testing Framework',
-                        image: 'images/phpunit.png',
-                        url: 'https://phpunit.de/',
-                    },
-                ],
-            }
-        }
+        computed: {
+            home(){
+                return this.$store.getters.getPage('home')
+            },
+            tools(){
+                return [
+                        {
+                            title: translate(this.home, 'tool1_name'),
+                            image: 'images/php.png',
+                            url: 'http://php.net/',
+                        },
+                        {
+                            title: translate(this.home, 'tool2_name'),
+                            image: 'images/laravel.png',
+                            url: 'https://laravel.com/',
+                        },
+                        {
+                            title: translate(this.home, 'tool3_name'),
+                            image: 'images/vue.png',
+                            url: 'https://vuejs.org',
+                        },
+                        {
+                            title: translate(this.home, 'tool4_name'),
+                            image: 'images/bootstrap.png',
+                            url: 'https://getbootstrap.com/',
+                        },
+                        {
+                            title: translate(this.home, 'tool5_name'),
+                            image: 'images/git.png',
+                            url: 'https://git-scm.com/',
+                        },
+                        {
+                            title: translate(this.home, 'tool6_name'),
+                            image: 'images/phpunit.png',
+                            url: 'https://phpunit.de/',
+                        },
+                    ]
+            },
+        },
     }
 </script>

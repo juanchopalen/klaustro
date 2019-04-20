@@ -5,11 +5,11 @@
           <div class="col-xxl-8">
             <div class="box-cta box-cta-inline">
               <div class="box-cta-inner">
-                <h3 class="box-cta-title">do you need a consultation?</h3>
-                <p>Ask without compromise, I will respond you soon</p>
+                <h3 class="box-cta-title">{{ translate(home, 'consulting_title') }}</h3>
+                <p>{{ translate(home, 'consulting_subtile') }}</p>
               </div>
               <div class="box-cta-inner">
-                <router-link class="button button-secondary button-nina" to="contact" @click.native="scrollToTop">learn more</router-link>
+                <router-link class="button button-secondary" to="contact" @click.native="scrollToTop">{{ translate(home, 'consulting_button') }}</router-link>
               </div>
             </div>
           </div>
@@ -19,6 +19,11 @@
 </template>
 <script>
   export default {
+    computed: {
+          home(){
+            return this.$store.getters.getPage('home')
+          }
+    },
     methods: {
            scrollToTop() {
                 window.scrollTo(0,0);

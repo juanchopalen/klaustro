@@ -35,7 +35,7 @@
         @yield('content')
 
         <!-- Page Footer-->
-        @include('front.footer')
+
 
       </div>
       <!-- Global Mailform Output-->

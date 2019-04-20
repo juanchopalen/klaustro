@@ -3,7 +3,7 @@
   <div class="container container-wide">
     <div class="row row-fix">
       <div class="col-sm-12">
-        <h3>latest Projects</h3>
+        <h3>{{ translate(home, 'blog_title') }}</h3>
         <div class="divider divider-default"></div>
         <div class="row row-50">
             <div v-for="post in posts" class="col-md-6 col-xl-4">
@@ -16,13 +16,13 @@
                   </div>
                   <div class="event-default-inner">
                     <div class="box-inline"><span class="icon novi-icon icon-md-middle icon-secondary mdi mdi-calendar"></span><router-link class="event-default-link" :to="'/blog/' + post.slug">{{ post.created_at | moment("MMMM Do YYYY") }}</router-link></div>
-                    <h5><router-link class="event-default-title" :to="'/blog/' + post.slug">{{ post.title }}</router-link></h5>
+                    <h5><router-link class="event-default-title" :to="'/blog/' + post.slug">{{ translate(post, 'title') }}</router-link></h5>
                   </div>
               </article>
             </div>
         </div>
       </div>
-    </div><router-link class="button button-secondary button-nina" :to="'/blog'">view all blog posts</router-link>
+    </div><router-link class="button button-secondary" :to="'/blog'">{{ translate(home, 'blog_button') }}</router-link>
   </div>
 </section>
 </template>
@@ -35,6 +35,11 @@
         },
         created(){
             this.getPosts()
+        },
+        computed: {
+              home(){
+                return this.$store.getters.getPage('home')
+              }
         },
         methods: {
             getPosts(){

@@ -23,6 +23,7 @@ Vue.component('services', require('./components/layout/Services.vue'));
 Vue.component('consulting', require('./components/layout/Consulting.vue'));
 Vue.component('projects', require('./components/layout/Projects.vue'));
 Vue.component('tools', require('./components/layout/Tools.vue'));
+Vue.component('foot', require('./components/layout/Footer.vue'));
 Vue.component('spinner', require('./components/helpers/Spinner.vue'));
 Vue.component('comments', require('./components/blog/comment/Index.vue'));
 Vue.component('create-comment', require('./components/blog/comment/Create.vue'));
