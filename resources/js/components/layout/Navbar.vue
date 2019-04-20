@@ -47,11 +47,13 @@
             <div class="rd-navbar-aside-right rd-navbar-collapse">
               <!-- RD Navbar Search-->
                 <ul class="rd-navbar-nav">
-                  <li><a href="#" class="text-upper">{{ currentLang.code }} <span class="icon novi-icon icon-md icon-primary mdi mdi-web"></span></a>
+                  <li><a href="#" class="text-upper"><span class="icon novi-icon icon-md icon-primary mdi mdi-web"></span> {{ currentLang ? currentLang.code : 'EN' }}</a>
                     <!-- RD Navbar Dropdown-->
                     <ul class="rd-navbar-dropdown">
                       <li v-for="language in languages">
-                        <a href="##" @click="setLanguage(language.id)">{{ language.name }}</a>
+                        <a href="javascript:void(0)" @click="setLanguage(language.id)" :class="language === currentLang ? 'active' : ''">
+                          {{ language.name }}
+                        </a>
                       </li>
                     </ul>
                   </li>
@@ -76,6 +78,9 @@
               return this.$store.getters.getLanguages
             },
             currentLang(){
+              if (! this.languages) {
+                return null
+              }
               return this.languages.find( lang => lang.id === this.$store.getters.getLanguageId )
             },
             home(){
@@ -83,14 +88,16 @@
             }
         },
         created(){
-            this.$store.dispatch('getLanguages')
+            this.$store.dispatch('getPages')
               .then(response => {
-                if (this.$store.getters.getLanguageId == null) {
-                  let current = this.$store.getters.getLanguages.find(language => language.active === true)
-                  this.$store.dispatch('setLanguageId', current.id)
-                }
+                this.$store.dispatch('getLanguages')
+                  .then(response => {
+                    if (this.$store.getters.getLanguageId == null) {
+                      let current = this.$store.getters.getLanguages.find(language => language.active === true)
+                      this.$store.dispatch('setLanguageId', current.id)
+                    }
+                  })
               })
-              this.$store.dispatch('getPages')
         },
         methods: {
           setLanguage(id){
@@ -102,3 +109,8 @@
         },
     }
 </script>
+<style scoped>
+  .active {
+    font-weight: bold !important
+  }
+</style>

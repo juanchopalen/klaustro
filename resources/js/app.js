@@ -42,6 +42,9 @@ Vue.use(VueSweetalert2)
 
 //Utilities
 window.translate = function(model, key){
+    if (!model) {
+        return
+    }
     let language_id = store.getters.getLanguageId
     let translation = model.row.translations.find(translate => translate.language_id === language_id && translate.key === key)
 
@@ -53,14 +56,7 @@ window.translate = function(model, key){
 }
 
 Vue.prototype.translate = function(model, key){
-    let language_id = store.getters.getLanguageId
-    let translation = model.row.translations.find(translate => translate.language_id === language_id && translate.key === key)
-
-    if (!translation) {
-        translation = model.row.translations.find(translate => translate.language_id === 1 && translate.key === key)
-    }
-
-    return translation.value
+    return translate(model, key)
 }
 
 const app = new Vue({

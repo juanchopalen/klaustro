@@ -1,7 +1,7 @@
 <template>
     <modal name="register" :autoshow="autoshow">
       <template slot="title">{{ translate(auth, 'signup') }}</template>
-      <img slot="image" src="images/tucacas-way.jpg" alt="" width="510" height="807"/>
+      <img slot="image" src="/images/tucacas-way.jpg" alt="" width="510" height="807"/>
       <form method="POST" action="/register" slot="body">
         <input type="hidden" name="_token" :value="token">
         <div class="form-wrap form-wrap-validation">

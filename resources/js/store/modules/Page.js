@@ -32,7 +32,6 @@ let actions = {
 
 let mutations = {
     getPages(state, payload){
-        console.log(payload)
         Vue.set(state, 'pages', payload)
     }
 }

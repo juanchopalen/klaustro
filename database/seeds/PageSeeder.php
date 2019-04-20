@@ -682,6 +682,66 @@ class PageSeeder extends Seeder
             'key' => 'author',
            'value' => 'por',
         ]);
+        $blog->row->translations()->create([
+            'language_id' => 1,
+            'key' => 'comment_title',
+            'value' => 'Send a comment',
+        ]);
+        $blog->row->translations()->create([
+            'language_id' => 2,
+            'key' => 'comment_title',
+           'value' => 'Enviar un comentario',
+        ]);
+        $blog->row->translations()->create([
+            'language_id' => 1,
+            'key' => 'name',
+            'value' => 'Name',
+        ]);
+        $blog->row->translations()->create([
+            'language_id' => 2,
+            'key' => 'name',
+           'value' => 'Nombre',
+        ]);
+        $blog->row->translations()->create([
+            'language_id' => 1,
+            'key' => 'email',
+            'value' => 'E-mail',
+        ]);
+        $blog->row->translations()->create([
+            'language_id' => 2,
+            'key' => 'email',
+           'value' => 'Correo Electrónico',
+        ]);
+        $blog->row->translations()->create([
+            'language_id' => 1,
+            'key' => 'comment',
+            'value' => 'Comment',
+        ]);
+        $blog->row->translations()->create([
+            'language_id' => 2,
+            'key' => 'comment',
+           'value' => 'Comentario',
+        ]);
+        $blog->row->translations()->create([
+            'language_id' => 1,
+            'key' => 'comment_button',
+            'value' => 'Send Comment',
+        ]);
+        $blog->row->translations()->create([
+            'language_id' => 2,
+            'key' => 'comment_button',
+           'value' => 'Enviar Comentario',
+        ]);
+        $blog->row->translations()->create([
+            'language_id' => 1,
+            'key' => 'cancel_button',
+            'value' => 'Cancel',
+        ]);
+        $blog->row->translations()->create([
+            'language_id' => 2,
+            'key' => 'cancel_button',
+            'value' => 'Cancelar',
+        ]);
 
         $auth = factory(Page::class)->create(['slug' => 'auth']);
         $auth->row()->save(new Row);
