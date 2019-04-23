@@ -86,7 +86,6 @@
       </div>
       </section>
       <spinner v-if="loading"></spinner>
-      <foot></foot>
     </div>
 </template>
 <script>
