@@ -35,7 +35,7 @@ class InvestmentController extends Controller
         for ($i=0; $i < $weeks; $i++) {
             $limit = $investement * 2;
             //$percent = 0.11715;
-            $percent = rand(500, 1300)/10000;
+            $percent = rand(800, 1500)/10000;
             $profit = $investement * $percent;
             $retirement = $profit * $fee;
             $acum += $retirement;
