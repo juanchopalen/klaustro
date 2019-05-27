@@ -1,5 +1,4 @@
 <template>
-    <div>
       <!-- Blog-->
       <section class="section section-xl bg-gray-lighter">
         <div class="container container-bigger" :class="loading ? 'loading' : ''">
@@ -91,8 +90,6 @@
         </div>
         <spinner v-if="loading"></spinner>
       </section>
-      <foot></foot>
-    </div>
 </template>
 <script>
     export default {
