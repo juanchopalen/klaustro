@@ -42,6 +42,11 @@ class PageSeeder extends Seeder
             'key' => 'navbar_logout',
             'value' => 'Logout',
         ]);
+        $home->row->translations()->create([
+            'language_id' => 1,
+            'key' => 'navbar_investments',
+            'value' => 'Investments',
+        ]);
 
         $home->row->translations()->create([
             'language_id' => 2,
@@ -67,6 +72,11 @@ class PageSeeder extends Seeder
             'language_id' => 2,
             'key' => 'navbar_logout',
             'value' => 'Cerrar Sesión',
+        ]);
+        $home->row->translations()->create([
+            'language_id' => 2,
+            'key' => 'navbar_investments',
+            'value' => 'Inversiones',
         ]);
 
         //Header

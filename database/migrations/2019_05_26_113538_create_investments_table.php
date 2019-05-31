@@ -14,7 +14,11 @@ class CreateInvestmentsTable extends Migration
     public function up()
     {
         Schema::create('investments', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
+            $table->decimal('amount', 10, 4);
+            $table->decimal('limit', 10, 4);
+            $table->decimal('percent', 10, 4);
+            $table->decimal('retirement', 10, 4);
             $table->timestamps();
         });
     }

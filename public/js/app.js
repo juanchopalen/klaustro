@@ -88409,6 +88409,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['user', 'errors'],
@@ -88592,6 +88594,29 @@ var render = function() {
                               ]),
                               _vm._v(" "),
                               _c("ul", { staticClass: "rd-navbar-dropdown" }, [
+                                _c("li", [
+                                  _c(
+                                    "a",
+                                    {
+                                      attrs: {
+                                        href:
+                                          "/trading-wave?plan=1000&frequency=4&weeks=52",
+                                        target: "blank"
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        _vm._s(
+                                          _vm.translate(
+                                            _vm.home,
+                                            "navbar_investments"
+                                          )
+                                        )
+                                      )
+                                    ]
+                                  )
+                                ]),
+                                _vm._v(" "),
                                 _c("li", [
                                   _c("a", { attrs: { href: "/logout" } }, [
                                     _vm._v(

@@ -16,7 +16,7 @@ Route::get('/logout', 'Auth\LoginController@logout');
 Route::get('/logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 Route::get('/', 'FrontController@index');
-Route::get('/wave-trading', 'InvestmentController@index');
+Route::get('/trading-wave', 'InvestmentController@index');
 Route::get('/{any}', 'FrontController@index');
 Route::get('/blog/{any}', 'FrontController@index');
 

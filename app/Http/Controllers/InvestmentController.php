@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Investment;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -9,13 +10,13 @@ class InvestmentController extends Controller
 {
     public function index()
     {
-        $plan = 1000;
+        $plan = request()->plan ? request()->plan : 1000;
         $increment = $plan;
         $investement = $plan;
         $reinvestment = $plan;
-        $weeks_reinvestem = 4;
-        $fee = 0.825;
-        $weeks = 52;
+        $weeks_reinvestem = request()->frequency ? request()->frequency : 4;
+        $fee = 0.93;
+        $weeks = request()->weeks ? request()->weeks : 52;
         $start = Carbon::create(2019, 5, 24, 0, 0, 0, 'America/Caracas');
         $html = "<table border='1'>
             <tr>
@@ -29,13 +30,20 @@ class InvestmentController extends Controller
                 <th>Retiro</th>
                 <th>Acumulado</th>
                 <th>Dinero</th>
+                <th>Real Inversion</th>
+                <th>Real Limite</th>
+                <th>Real Porcentaje</th>
+                <th>Real Ganancia</th>
+                <th>Real Retiro</th>
             </tr>";
         $acum = 0;
         $profit_acum = 0;
+        $simulation = [];
+        $real_investement = Investment::all()->toArray();
         for ($i=0; $i < $weeks; $i++) {
             $limit = $investement * 2;
             //$percent = 0.11715;
-            $percent = rand(800, 1500)/10000;
+            $percent = rand(100, 1300)/10000;
             $profit = $investement * $percent;
             $retirement = $profit * $fee;
             $acum += $retirement;
@@ -58,9 +66,21 @@ class InvestmentController extends Controller
                 $reinvestment = $reinvestment * 1;
             }
             $week = $i + 1;
+            $date = $start->addWeek()->toFormattedDateString();
+            if (isset($real_investement[$i])) {
+                $real_amount = $real_investement[$i]['amount'];
+                $real_limit = $real_investement[$i]['limit'];
+                $real_percent = $real_investement[$i]['percent'];
+                $real_retirement = $real_investement[$i]['retirement'];
+            } else {
+                $real_amount = 0;
+                $real_limit = 0;
+                $real_percent = 0;
+                $real_retirement = 0;
+            }
             $html .=  "<tr style='color: " . $color . "'>
                 <td>". $week ."</td>
-                <td>". $start->addWeek()->toFormattedDateString() ."</td>
+                <td>". $date ."</td>
                 <td>". number_format($investement, 2) ."</td>
                 <td>". number_format($limit, 2) ."</td>
                 <td>". number_format($percent * 100, 2) ."%</td>
@@ -69,7 +89,22 @@ class InvestmentController extends Controller
                 <td>". number_format($retirement, 2) ."</td>
                 <td>". number_format($acum, 2) ."</td>
                 <td>". number_format($real, 2) ."</td>
+                <td>". number_format($real_amount, 2) ."</td>
+                <td>". number_format($real_limit, 2) ."</td>
+                <td>". number_format($real_percent * 100, 2) ." %</td>
+                <td>". number_format($real_amount * $real_percent , 2) ."</td>
+                <td>". number_format($real_amount * $real_percent * $fee , 2) ."</td>
             </tr>";
+                $simulation[$i]['week'] = $week;
+                $simulation[$i]['date'] = $date;
+                $simulation[$i]['investement'] = $investement;
+                $simulation[$i]['limit'] = $limit;
+                $simulation[$i]['percent'] = $percent;
+                $simulation[$i]['profit'] = $profit;
+                $simulation[$i]['profit_acum'] = $profit_acum;
+                $simulation[$i]['retirement'] = $retirement;
+                $simulation[$i]['acum'] = $acum;
+                $simulation[$i]['real'] = $real;
             if ($profit_acum >= ($increment * 2)) {
                 $investement = $investement - $increment;
                 $limit = $investement * 2;
@@ -77,6 +112,7 @@ class InvestmentController extends Controller
             }
         }
         $html .= "</table>";
+        //return response()->json($simulation);
         return $html;
     }
 }
