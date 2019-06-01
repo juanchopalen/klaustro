@@ -47896,6 +47896,12 @@ Vue.prototype.translate = function (model, key) {
     return translate(model, key);
 };
 
+//filters
+Vue.filter('money', function (value) {
+    var numeral = __webpack_require__(594);
+    return numeral(value).format('0,0.00');
+});
+
 var app = new Vue({
     el: '#app',
     router: __WEBPACK_IMPORTED_MODULE_0__router__["a" /* default */],
@@ -47912,8 +47918,8 @@ var app = new Vue({
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__(207);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_layout_Home_vue__ = __webpack_require__(208);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_layout_Home_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_layout_Home_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Contact_vue__ = __webpack_require__(210);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Contact_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_Contact_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_pages_Contact_vue__ = __webpack_require__(587);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_pages_Contact_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_pages_Contact_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_layout_Error_vue__ = __webpack_require__(213);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_layout_Error_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_layout_Error_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_blog_Index_vue__ = __webpack_require__(215);
@@ -47922,6 +47928,9 @@ var app = new Vue({
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_blog_Show_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_blog_Show_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_blog_Create_vue__ = __webpack_require__(222);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_blog_Create_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_blog_Create_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_pages_Investment_vue__ = __webpack_require__(590);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_pages_Investment_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__components_pages_Investment_vue__);
+
 
 
 
@@ -47943,7 +47952,7 @@ var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
     }, {
         name: 'contact',
         path: '/contact',
-        component: __WEBPACK_IMPORTED_MODULE_3__components_Contact_vue___default.a
+        component: __WEBPACK_IMPORTED_MODULE_3__components_pages_Contact_vue___default.a
     }, {
         name: 'blog',
         path: '/blog',
@@ -47956,6 +47965,10 @@ var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
         name: 'post',
         path: '/blog/:slug',
         component: __WEBPACK_IMPORTED_MODULE_6__components_blog_Show_vue___default.a
+    }, {
+        name: 'investment',
+        path: '/investment',
+        component: __WEBPACK_IMPORTED_MODULE_8__components_pages_Investment_vue___default.a
     }, {
         name: 'error',
         path: '*',
@@ -50942,697 +50955,9 @@ if (false) {
 }
 
 /***/ }),
-/* 210 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(2)
-/* script */
-var __vue_script__ = __webpack_require__(211)
-/* template */
-var __vue_template__ = __webpack_require__(212)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/js/components/Contact.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4c2584f6", Component.options)
-  } else {
-    hotAPI.reload("data-v-4c2584f6", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 211 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            contact: {
-                first_name: '',
-                last_name: '',
-                email: '',
-                phone: '',
-                message: ''
-            },
-            loading: false
-        };
-    },
-
-    methods: {
-        send: function send() {
-            var _this = this;
-
-            this.loading = true;
-            axios.post('/api/contact', this.contact).then(function (response) {
-                Vue.toasted.show(response.data.message, { type: 'success' });
-                _this.contact.first_name = '';
-                _this.contact.last_name = '';
-                _this.contact.email = '';
-                _this.contact.phone = '';
-                _this.contact.message = '';
-                _this.loading = false;
-            }).catch(function (error) {
-                console.log(error);
-                Vue.toasted.show(error.message, { type: 'error' });
-                _this.loading = false;
-            });
-        },
-        validString: function validString(value) {
-            return value.length > 3;
-        }
-    },
-    computed: {
-        validForm: function validForm() {
-            return this.validString(this.contact.first_name); //&&
-            this.validString(this.contact.last_name) && this.validEmail && this.validString(this.contact.phone) && this.validString(this.contact.message);
-        },
-        validEmail: function validEmail() {
-            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            return re.test(String(this.contact.email).toLowerCase());
-        },
-        contactPage: function contactPage() {
-            return this.$store.getters.getPage('contact');
-        }
-    }
-});
-
-/***/ }),
-/* 212 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c(
-        "section",
-        {
-          staticClass: "section section-lg bg-default",
-          class: _vm.loading ? "loading" : ""
-        },
-        [
-          _c("div", { staticClass: "container container-bigger" }, [
-            _c(
-              "div",
-              {
-                staticClass:
-                  "row row-50 justify-content-md-center justify-content-xl-between"
-              },
-              [
-                _c("div", { staticClass: "col-md-10 col-lg-7" }, [
-                  _c("h3", [
-                    _vm._v(_vm._s(_vm.translate(_vm.contactPage, "title")))
-                  ]),
-                  _vm._v(" "),
-                  _c("hr", {
-                    staticClass: "divider divider-left divider-default"
-                  }),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "big" }, [
-                    _vm._v(_vm._s(_vm.translate(_vm.contactPage, "intro")))
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "row row-fix row-20" }, [
-                    _c("div", { staticClass: "col-md-6" }, [
-                      _c(
-                        "div",
-                        { staticClass: "form-wrap form-wrap-validation" },
-                        [
-                          _c(
-                            "label",
-                            {
-                              staticClass: "form-label-outside",
-                              class: _vm.validString(_vm.contact.first_name)
-                                ? ""
-                                : "label-required",
-                              attrs: { for: "form-1-name" }
-                            },
-                            [
-                              _vm._v(
-                                _vm._s(
-                                  _vm.translate(_vm.contactPage, "first_name")
-                                )
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.contact.first_name,
-                                expression: "contact.first_name"
-                              }
-                            ],
-                            staticClass: "form-input",
-                            attrs: {
-                              id: "form-1-name",
-                              type: "text",
-                              name: "name"
-                            },
-                            domProps: { value: _vm.contact.first_name },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.contact,
-                                  "first_name",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          })
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-6" }, [
-                      _c(
-                        "div",
-                        { staticClass: "form-wrap form-wrap-validation" },
-                        [
-                          _c(
-                            "label",
-                            {
-                              staticClass: "form-label-outside",
-                              class: _vm.validString(_vm.contact.last_name)
-                                ? ""
-                                : "label-required",
-                              attrs: { for: "form-1-last-name" }
-                            },
-                            [
-                              _vm._v(
-                                _vm._s(
-                                  _vm.translate(_vm.contactPage, "last_name")
-                                )
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.contact.last_name,
-                                expression: "contact.last_name"
-                              }
-                            ],
-                            staticClass: "form-input",
-                            attrs: {
-                              id: "form-1-last-name",
-                              type: "text",
-                              name: "last-name"
-                            },
-                            domProps: { value: _vm.contact.last_name },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.contact,
-                                  "last_name",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          })
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-6" }, [
-                      _c(
-                        "div",
-                        { staticClass: "form-wrap form-wrap-validation" },
-                        [
-                          _c(
-                            "label",
-                            {
-                              staticClass: "form-label-outside",
-                              class: _vm.validEmail ? "" : "label-required",
-                              attrs: { for: "form-1-email" }
-                            },
-                            [
-                              _vm._v(
-                                _vm._s(_vm.translate(_vm.contactPage, "email"))
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.contact.email,
-                                expression: "contact.email"
-                              }
-                            ],
-                            staticClass: "form-input",
-                            attrs: {
-                              id: "form-1-email",
-                              type: "email",
-                              name: "email"
-                            },
-                            domProps: { value: _vm.contact.email },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.contact,
-                                  "email",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          })
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-6" }, [
-                      _c(
-                        "div",
-                        { staticClass: "form-wrap form-wrap-validation" },
-                        [
-                          _c(
-                            "label",
-                            {
-                              staticClass: "form-label-outside",
-                              class: _vm.validString(_vm.contact.phone)
-                                ? ""
-                                : "label-required",
-                              attrs: { for: "form-1-phone" }
-                            },
-                            [
-                              _vm._v(
-                                _vm._s(_vm.translate(_vm.contactPage, "phone"))
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.contact.phone,
-                                expression: "contact.phone"
-                              }
-                            ],
-                            staticClass: "form-input",
-                            attrs: {
-                              id: "form-1-phone",
-                              type: "text",
-                              name: "phone"
-                            },
-                            domProps: { value: _vm.contact.phone },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.contact,
-                                  "phone",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          })
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-sm-12" }, [
-                      _c(
-                        "div",
-                        { staticClass: "form-wrap form-wrap-validation" },
-                        [
-                          _c(
-                            "label",
-                            {
-                              staticClass: "form-label-outside",
-                              class: _vm.validString(_vm.contact.message)
-                                ? ""
-                                : "label-required",
-                              attrs: { for: "form-1-message" }
-                            },
-                            [
-                              _vm._v(
-                                _vm._s(
-                                  _vm.translate(_vm.contactPage, "message")
-                                )
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c("textarea", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.contact.message,
-                                expression: "contact.message"
-                              }
-                            ],
-                            staticClass: "form-input",
-                            attrs: { id: "form-1-message", name: "message" },
-                            domProps: { value: _vm.contact.message },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.contact,
-                                  "message",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          })
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-sm-12 offset-custom-1" }, [
-                      _c("div", { staticClass: "form-button" }, [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "button button-secondary",
-                            attrs: { disabled: !_vm.validForm || _vm.loading },
-                            on: { click: _vm.send }
-                          },
-                          [
-                            _vm._v(
-                              _vm._s(_vm.translate(_vm.contactPage, "button"))
-                            )
-                          ]
-                        )
-                      ])
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-10 col-lg-5 col-xl-4" }, [
-                  _c("div", { staticClass: "column-aside" }, [
-                    _c("div", { staticClass: "row" }, [
-                      _c(
-                        "div",
-                        { staticClass: "col-sm-10 col-md-6 col-lg-12" },
-                        [
-                          _c("h6", [
-                            _vm._v(
-                              _vm._s(_vm.translate(_vm.contactPage, "location"))
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("hr", { staticClass: "divider-thin" }),
-                          _vm._v(" "),
-                          _vm._m(0)
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "col-sm-10 col-md-6 col-lg-12" },
-                        [
-                          _c("h6", [
-                            _vm._v(
-                              _vm._s(_vm.translate(_vm.contactPage, "phone"))
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("hr", { staticClass: "divider-thin" }),
-                          _vm._v(" "),
-                          _vm._m(1)
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "col-sm-10 col-md-6 col-lg-12" },
-                        [
-                          _c("h6", [
-                            _vm._v(
-                              _vm._s(_vm.translate(_vm.contactPage, "email"))
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("hr", { staticClass: "divider-thin" }),
-                          _vm._v(" "),
-                          _vm._m(2)
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "col-sm-10 col-md-6 col-lg-12" },
-                        [
-                          _c("h6", [
-                            _vm._v(
-                              _vm._s(
-                                _vm.translate(_vm.contactPage, "work_hours")
-                              )
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("hr", { staticClass: "divider-thin" }),
-                          _vm._v(" "),
-                          _c("article", { staticClass: "box-inline" }, [
-                            _c("span", {
-                              staticClass:
-                                "icon novi-icon icon-md-smaller icon-primary mdi mdi-calendar-clock"
-                            }),
-                            _vm._v(" "),
-                            _c("ul", { staticClass: "list-0" }, [
-                              _c("li", [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm.translate(
-                                      _vm.contactPage,
-                                      "work_hours_desc"
-                                    )
-                                  )
-                                )
-                              ])
-                            ])
-                          ])
-                        ]
-                      )
-                    ])
-                  ])
-                ])
-              ]
-            )
-          ])
-        ]
-      ),
-      _vm._v(" "),
-      _vm.loading ? _c("spinner") : _vm._e()
-    ],
-    1
-  )
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("article", { staticClass: "box-inline" }, [
-      _c("span", {
-        staticClass:
-          "icon novi-icon icon-md-smaller icon-primary mdi mdi-map-marker"
-      }),
-      _c("span", [
-        _c("a", { attrs: { href: "#" } }, [
-          _vm._v("Caracas"),
-          _c("br", { staticClass: "d-none d-xl-block" }),
-          _vm._v(" Venezuela")
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("article", { staticClass: "box-inline" }, [
-      _c("span", {
-        staticClass: "icon novi-icon icon-md-smaller icon-primary mdi mdi-phone"
-      }),
-      _vm._v(" "),
-      _c("ul", { staticClass: "list-comma" }, [
-        _c("li", [
-          _c("a", { attrs: { href: "tel:#" } }, [_vm._v("+58 414 9900552")])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "tel:#" } }, [_vm._v("+58 212 5736017")])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("article", { staticClass: "box-inline" }, [
-      _c("span", {
-        staticClass:
-          "icon novi-icon icon-md-smaller icon-primary mdi mdi-email-open"
-      }),
-      _c("span", [
-        _c("a", { attrs: { href: "mailto:#" } }, [
-          _vm._v("contact@klaustro.net")
-        ])
-      ])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-4c2584f6", module.exports)
-  }
-}
-
-/***/ }),
+/* 210 */,
+/* 211 */,
+/* 212 */,
 /* 213 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -53698,7 +53023,9 @@ if (false) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_Comment_js__ = __webpack_require__(229);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_Language_js__ = __webpack_require__(230);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_Page_js__ = __webpack_require__(231);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_vuex_persistedstate__ = __webpack_require__(232);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_Investment_js__ = __webpack_require__(593);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_vuex_persistedstate__ = __webpack_require__(232);
+
 
 
 
@@ -53717,9 +53044,10 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
         Post: __WEBPACK_IMPORTED_MODULE_3__modules_Post_js__["a" /* default */],
         Comment: __WEBPACK_IMPORTED_MODULE_4__modules_Comment_js__["a" /* default */],
         Language: __WEBPACK_IMPORTED_MODULE_5__modules_Language_js__["a" /* default */],
-        Page: __WEBPACK_IMPORTED_MODULE_6__modules_Page_js__["a" /* default */]
+        Page: __WEBPACK_IMPORTED_MODULE_6__modules_Page_js__["a" /* default */],
+        Investment: __WEBPACK_IMPORTED_MODULE_7__modules_Investment_js__["a" /* default */]
     },
-    plugins: [Object(__WEBPACK_IMPORTED_MODULE_7_vuex_persistedstate__["a" /* default */])()]
+    plugins: [Object(__WEBPACK_IMPORTED_MODULE_8_vuex_persistedstate__["a" /* default */])()]
 });
 
 /* harmony default export */ __webpack_exports__["a"] = (store);
@@ -88594,28 +87922,31 @@ var render = function() {
                               ]),
                               _vm._v(" "),
                               _c("ul", { staticClass: "rd-navbar-dropdown" }, [
-                                _c("li", [
-                                  _c(
-                                    "a",
-                                    {
-                                      attrs: {
-                                        href:
-                                          "/trading-wave?plan=1000&frequency=4&weeks=52",
-                                        target: "blank"
-                                      }
-                                    },
-                                    [
-                                      _vm._v(
-                                        _vm._s(
-                                          _vm.translate(
-                                            _vm.home,
-                                            "navbar_investments"
+                                _c(
+                                  "li",
+                                  [
+                                    _c(
+                                      "router-link",
+                                      {
+                                        attrs: {
+                                          to: "/investment",
+                                          target: "blank"
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          _vm._s(
+                                            _vm.translate(
+                                              _vm.home,
+                                              "navbar_investments"
+                                            )
                                           )
                                         )
-                                      )
-                                    ]
-                                  )
-                                ]),
+                                      ]
+                                    )
+                                  ],
+                                  1
+                                ),
                                 _vm._v(" "),
                                 _c("li", [
                                   _c("a", { attrs: { href: "/logout" } }, [
@@ -100859,6 +100190,2276 @@ Object.defineProperty(exports, '__esModule', { value: true });
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 535 */,
+/* 536 */,
+/* 537 */,
+/* 538 */,
+/* 539 */,
+/* 540 */,
+/* 541 */,
+/* 542 */,
+/* 543 */,
+/* 544 */,
+/* 545 */,
+/* 546 */,
+/* 547 */,
+/* 548 */,
+/* 549 */,
+/* 550 */,
+/* 551 */,
+/* 552 */,
+/* 553 */,
+/* 554 */,
+/* 555 */,
+/* 556 */,
+/* 557 */,
+/* 558 */,
+/* 559 */,
+/* 560 */,
+/* 561 */,
+/* 562 */,
+/* 563 */,
+/* 564 */,
+/* 565 */,
+/* 566 */,
+/* 567 */,
+/* 568 */,
+/* 569 */,
+/* 570 */,
+/* 571 */,
+/* 572 */,
+/* 573 */,
+/* 574 */,
+/* 575 */,
+/* 576 */,
+/* 577 */,
+/* 578 */,
+/* 579 */,
+/* 580 */,
+/* 581 */,
+/* 582 */,
+/* 583 */,
+/* 584 */,
+/* 585 */,
+/* 586 */,
+/* 587 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(588)
+/* template */
+var __vue_template__ = __webpack_require__(589)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/pages/Contact.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-00975dfa", Component.options)
+  } else {
+    hotAPI.reload("data-v-00975dfa", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 588 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            contact: {
+                first_name: '',
+                last_name: '',
+                email: '',
+                phone: '',
+                message: ''
+            },
+            loading: false
+        };
+    },
+
+    methods: {
+        send: function send() {
+            var _this = this;
+
+            this.loading = true;
+            axios.post('/api/contact', this.contact).then(function (response) {
+                Vue.toasted.show(response.data.message, { type: 'success' });
+                _this.contact.first_name = '';
+                _this.contact.last_name = '';
+                _this.contact.email = '';
+                _this.contact.phone = '';
+                _this.contact.message = '';
+                _this.loading = false;
+            }).catch(function (error) {
+                console.log(error);
+                Vue.toasted.show(error.message, { type: 'error' });
+                _this.loading = false;
+            });
+        },
+        validString: function validString(value) {
+            return value.length > 3;
+        }
+    },
+    computed: {
+        validForm: function validForm() {
+            return this.validString(this.contact.first_name); //&&
+            this.validString(this.contact.last_name) && this.validEmail && this.validString(this.contact.phone) && this.validString(this.contact.message);
+        },
+        validEmail: function validEmail() {
+            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(String(this.contact.email).toLowerCase());
+        },
+        contactPage: function contactPage() {
+            return this.$store.getters.getPage('contact');
+        }
+    }
+});
+
+/***/ }),
+/* 589 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "section",
+        {
+          staticClass: "section section-lg bg-default",
+          class: _vm.loading ? "loading" : ""
+        },
+        [
+          _c("div", { staticClass: "container container-bigger" }, [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "row row-50 justify-content-md-center justify-content-xl-between"
+              },
+              [
+                _c("div", { staticClass: "col-md-10 col-lg-7" }, [
+                  _c("h3", [
+                    _vm._v(_vm._s(_vm.translate(_vm.contactPage, "title")))
+                  ]),
+                  _vm._v(" "),
+                  _c("hr", {
+                    staticClass: "divider divider-left divider-default"
+                  }),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "big" }, [
+                    _vm._v(_vm._s(_vm.translate(_vm.contactPage, "intro")))
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row row-fix row-20" }, [
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _c(
+                        "div",
+                        { staticClass: "form-wrap form-wrap-validation" },
+                        [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "form-label-outside",
+                              class: _vm.validString(_vm.contact.first_name)
+                                ? ""
+                                : "label-required",
+                              attrs: { for: "form-1-name" }
+                            },
+                            [
+                              _vm._v(
+                                _vm._s(
+                                  _vm.translate(_vm.contactPage, "first_name")
+                                )
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.contact.first_name,
+                                expression: "contact.first_name"
+                              }
+                            ],
+                            staticClass: "form-input",
+                            attrs: {
+                              id: "form-1-name",
+                              type: "text",
+                              name: "name"
+                            },
+                            domProps: { value: _vm.contact.first_name },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.contact,
+                                  "first_name",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _c(
+                        "div",
+                        { staticClass: "form-wrap form-wrap-validation" },
+                        [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "form-label-outside",
+                              class: _vm.validString(_vm.contact.last_name)
+                                ? ""
+                                : "label-required",
+                              attrs: { for: "form-1-last-name" }
+                            },
+                            [
+                              _vm._v(
+                                _vm._s(
+                                  _vm.translate(_vm.contactPage, "last_name")
+                                )
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.contact.last_name,
+                                expression: "contact.last_name"
+                              }
+                            ],
+                            staticClass: "form-input",
+                            attrs: {
+                              id: "form-1-last-name",
+                              type: "text",
+                              name: "last-name"
+                            },
+                            domProps: { value: _vm.contact.last_name },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.contact,
+                                  "last_name",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _c(
+                        "div",
+                        { staticClass: "form-wrap form-wrap-validation" },
+                        [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "form-label-outside",
+                              class: _vm.validEmail ? "" : "label-required",
+                              attrs: { for: "form-1-email" }
+                            },
+                            [
+                              _vm._v(
+                                _vm._s(_vm.translate(_vm.contactPage, "email"))
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.contact.email,
+                                expression: "contact.email"
+                              }
+                            ],
+                            staticClass: "form-input",
+                            attrs: {
+                              id: "form-1-email",
+                              type: "email",
+                              name: "email"
+                            },
+                            domProps: { value: _vm.contact.email },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.contact,
+                                  "email",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _c(
+                        "div",
+                        { staticClass: "form-wrap form-wrap-validation" },
+                        [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "form-label-outside",
+                              class: _vm.validString(_vm.contact.phone)
+                                ? ""
+                                : "label-required",
+                              attrs: { for: "form-1-phone" }
+                            },
+                            [
+                              _vm._v(
+                                _vm._s(_vm.translate(_vm.contactPage, "phone"))
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.contact.phone,
+                                expression: "contact.phone"
+                              }
+                            ],
+                            staticClass: "form-input",
+                            attrs: {
+                              id: "form-1-phone",
+                              type: "text",
+                              name: "phone"
+                            },
+                            domProps: { value: _vm.contact.phone },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.contact,
+                                  "phone",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-12" }, [
+                      _c(
+                        "div",
+                        { staticClass: "form-wrap form-wrap-validation" },
+                        [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "form-label-outside",
+                              class: _vm.validString(_vm.contact.message)
+                                ? ""
+                                : "label-required",
+                              attrs: { for: "form-1-message" }
+                            },
+                            [
+                              _vm._v(
+                                _vm._s(
+                                  _vm.translate(_vm.contactPage, "message")
+                                )
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("textarea", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.contact.message,
+                                expression: "contact.message"
+                              }
+                            ],
+                            staticClass: "form-input",
+                            attrs: { id: "form-1-message", name: "message" },
+                            domProps: { value: _vm.contact.message },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.contact,
+                                  "message",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-12 offset-custom-1" }, [
+                      _c("div", { staticClass: "form-button" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "button button-secondary",
+                            attrs: { disabled: !_vm.validForm || _vm.loading },
+                            on: { click: _vm.send }
+                          },
+                          [
+                            _vm._v(
+                              _vm._s(_vm.translate(_vm.contactPage, "button"))
+                            )
+                          ]
+                        )
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-10 col-lg-5 col-xl-4" }, [
+                  _c("div", { staticClass: "column-aside" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "div",
+                        { staticClass: "col-sm-10 col-md-6 col-lg-12" },
+                        [
+                          _c("h6", [
+                            _vm._v(
+                              _vm._s(_vm.translate(_vm.contactPage, "location"))
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("hr", { staticClass: "divider-thin" }),
+                          _vm._v(" "),
+                          _vm._m(0)
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "col-sm-10 col-md-6 col-lg-12" },
+                        [
+                          _c("h6", [
+                            _vm._v(
+                              _vm._s(_vm.translate(_vm.contactPage, "phone"))
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("hr", { staticClass: "divider-thin" }),
+                          _vm._v(" "),
+                          _vm._m(1)
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "col-sm-10 col-md-6 col-lg-12" },
+                        [
+                          _c("h6", [
+                            _vm._v(
+                              _vm._s(_vm.translate(_vm.contactPage, "email"))
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("hr", { staticClass: "divider-thin" }),
+                          _vm._v(" "),
+                          _vm._m(2)
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "col-sm-10 col-md-6 col-lg-12" },
+                        [
+                          _c("h6", [
+                            _vm._v(
+                              _vm._s(
+                                _vm.translate(_vm.contactPage, "work_hours")
+                              )
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("hr", { staticClass: "divider-thin" }),
+                          _vm._v(" "),
+                          _c("article", { staticClass: "box-inline" }, [
+                            _c("span", {
+                              staticClass:
+                                "icon novi-icon icon-md-smaller icon-primary mdi mdi-calendar-clock"
+                            }),
+                            _vm._v(" "),
+                            _c("ul", { staticClass: "list-0" }, [
+                              _c("li", [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm.translate(
+                                      _vm.contactPage,
+                                      "work_hours_desc"
+                                    )
+                                  )
+                                )
+                              ])
+                            ])
+                          ])
+                        ]
+                      )
+                    ])
+                  ])
+                ])
+              ]
+            )
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _vm.loading ? _c("spinner") : _vm._e()
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("article", { staticClass: "box-inline" }, [
+      _c("span", {
+        staticClass:
+          "icon novi-icon icon-md-smaller icon-primary mdi mdi-map-marker"
+      }),
+      _c("span", [
+        _c("a", { attrs: { href: "#" } }, [
+          _vm._v("Caracas"),
+          _c("br", { staticClass: "d-none d-xl-block" }),
+          _vm._v(" Venezuela")
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("article", { staticClass: "box-inline" }, [
+      _c("span", {
+        staticClass: "icon novi-icon icon-md-smaller icon-primary mdi mdi-phone"
+      }),
+      _vm._v(" "),
+      _c("ul", { staticClass: "list-comma" }, [
+        _c("li", [
+          _c("a", { attrs: { href: "tel:#" } }, [_vm._v("+58 414 9900552")])
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c("a", { attrs: { href: "tel:#" } }, [_vm._v("+58 212 5736017")])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("article", { staticClass: "box-inline" }, [
+      _c("span", {
+        staticClass:
+          "icon novi-icon icon-md-smaller icon-primary mdi mdi-email-open"
+      }),
+      _c("span", [
+        _c("a", { attrs: { href: "mailto:#" } }, [
+          _vm._v("contact@klaustro.net")
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-00975dfa", module.exports)
+  }
+}
+
+/***/ }),
+/* 590 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(595)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(591)
+/* template */
+var __vue_template__ = __webpack_require__(597)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-2dcf4d69"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/pages/Investment.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2dcf4d69", Component.options)
+  } else {
+    hotAPI.reload("data-v-2dcf4d69", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 591 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            params: {
+                plan: 1000,
+                frequency: 4,
+                weeks: 52
+            }
+        };
+    },
+    created: function created() {
+        this.getInvestments();
+    },
+
+    methods: {
+        getInvestments: function getInvestments() {
+            this.$store.dispatch('getInvestments', this.params);
+        }
+    },
+    computed: {
+        investments: function investments() {
+            return this.$store.getters.getInvestments;
+        }
+    }
+});
+
+/***/ }),
+/* 592 */,
+/* 593 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+    state: {
+        data: [],
+        loading: false
+    },
+    getters: {
+        getInvestments: function getInvestments(state) {
+            return state.data;
+        }
+    },
+    actions: {
+        getInvestments: function getInvestments(context, params) {
+            context.state.loading = true;
+            axios.post('/investments', params).then(function (response) {
+                context.commit('getInvestments', response.data);
+            }).catch(function (error) {
+                console.log(error);
+                context.state.loading = false;
+            });
+        }
+    },
+    mutations: {
+        getInvestments: function getInvestments(state, payload) {
+            Vue.set(state, 'data', payload);
+            state.loading = false;
+        }
+    }
+});
+
+/***/ }),
+/* 594 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! @preserve
+ * numeral.js
+ * version : 2.0.6
+ * author : Adam Draper
+ * license : MIT
+ * http://adamwdraper.github.com/Numeral-js/
+ */
+
+(function (global, factory) {
+    if (true) {
+        !(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
+				__WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else if (typeof module === 'object' && module.exports) {
+        module.exports = factory();
+    } else {
+        global.numeral = factory();
+    }
+}(this, function () {
+    /************************************
+        Variables
+    ************************************/
+
+    var numeral,
+        _,
+        VERSION = '2.0.6',
+        formats = {},
+        locales = {},
+        defaults = {
+            currentLocale: 'en',
+            zeroFormat: null,
+            nullFormat: null,
+            defaultFormat: '0,0',
+            scalePercentBy100: true
+        },
+        options = {
+            currentLocale: defaults.currentLocale,
+            zeroFormat: defaults.zeroFormat,
+            nullFormat: defaults.nullFormat,
+            defaultFormat: defaults.defaultFormat,
+            scalePercentBy100: defaults.scalePercentBy100
+        };
+
+
+    /************************************
+        Constructors
+    ************************************/
+
+    // Numeral prototype object
+    function Numeral(input, number) {
+        this._input = input;
+
+        this._value = number;
+    }
+
+    numeral = function(input) {
+        var value,
+            kind,
+            unformatFunction,
+            regexp;
+
+        if (numeral.isNumeral(input)) {
+            value = input.value();
+        } else if (input === 0 || typeof input === 'undefined') {
+            value = 0;
+        } else if (input === null || _.isNaN(input)) {
+            value = null;
+        } else if (typeof input === 'string') {
+            if (options.zeroFormat && input === options.zeroFormat) {
+                value = 0;
+            } else if (options.nullFormat && input === options.nullFormat || !input.replace(/[^0-9]+/g, '').length) {
+                value = null;
+            } else {
+                for (kind in formats) {
+                    regexp = typeof formats[kind].regexps.unformat === 'function' ? formats[kind].regexps.unformat() : formats[kind].regexps.unformat;
+
+                    if (regexp && input.match(regexp)) {
+                        unformatFunction = formats[kind].unformat;
+
+                        break;
+                    }
+                }
+
+                unformatFunction = unformatFunction || numeral._.stringToNumber;
+
+                value = unformatFunction(input);
+            }
+        } else {
+            value = Number(input)|| null;
+        }
+
+        return new Numeral(input, value);
+    };
+
+    // version number
+    numeral.version = VERSION;
+
+    // compare numeral object
+    numeral.isNumeral = function(obj) {
+        return obj instanceof Numeral;
+    };
+
+    // helper functions
+    numeral._ = _ = {
+        // formats numbers separators, decimals places, signs, abbreviations
+        numberToFormat: function(value, format, roundingFunction) {
+            var locale = locales[numeral.options.currentLocale],
+                negP = false,
+                optDec = false,
+                leadingCount = 0,
+                abbr = '',
+                trillion = 1000000000000,
+                billion = 1000000000,
+                million = 1000000,
+                thousand = 1000,
+                decimal = '',
+                neg = false,
+                abbrForce, // force abbreviation
+                abs,
+                min,
+                max,
+                power,
+                int,
+                precision,
+                signed,
+                thousands,
+                output;
+
+            // make sure we never format a null value
+            value = value || 0;
+
+            abs = Math.abs(value);
+
+            // see if we should use parentheses for negative number or if we should prefix with a sign
+            // if both are present we default to parentheses
+            if (numeral._.includes(format, '(')) {
+                negP = true;
+                format = format.replace(/[\(|\)]/g, '');
+            } else if (numeral._.includes(format, '+') || numeral._.includes(format, '-')) {
+                signed = numeral._.includes(format, '+') ? format.indexOf('+') : value < 0 ? format.indexOf('-') : -1;
+                format = format.replace(/[\+|\-]/g, '');
+            }
+
+            // see if abbreviation is wanted
+            if (numeral._.includes(format, 'a')) {
+                abbrForce = format.match(/a(k|m|b|t)?/);
+
+                abbrForce = abbrForce ? abbrForce[1] : false;
+
+                // check for space before abbreviation
+                if (numeral._.includes(format, ' a')) {
+                    abbr = ' ';
+                }
+
+                format = format.replace(new RegExp(abbr + 'a[kmbt]?'), '');
+
+                if (abs >= trillion && !abbrForce || abbrForce === 't') {
+                    // trillion
+                    abbr += locale.abbreviations.trillion;
+                    value = value / trillion;
+                } else if (abs < trillion && abs >= billion && !abbrForce || abbrForce === 'b') {
+                    // billion
+                    abbr += locale.abbreviations.billion;
+                    value = value / billion;
+                } else if (abs < billion && abs >= million && !abbrForce || abbrForce === 'm') {
+                    // million
+                    abbr += locale.abbreviations.million;
+                    value = value / million;
+                } else if (abs < million && abs >= thousand && !abbrForce || abbrForce === 'k') {
+                    // thousand
+                    abbr += locale.abbreviations.thousand;
+                    value = value / thousand;
+                }
+            }
+
+            // check for optional decimals
+            if (numeral._.includes(format, '[.]')) {
+                optDec = true;
+                format = format.replace('[.]', '.');
+            }
+
+            // break number and format
+            int = value.toString().split('.')[0];
+            precision = format.split('.')[1];
+            thousands = format.indexOf(',');
+            leadingCount = (format.split('.')[0].split(',')[0].match(/0/g) || []).length;
+
+            if (precision) {
+                if (numeral._.includes(precision, '[')) {
+                    precision = precision.replace(']', '');
+                    precision = precision.split('[');
+                    decimal = numeral._.toFixed(value, (precision[0].length + precision[1].length), roundingFunction, precision[1].length);
+                } else {
+                    decimal = numeral._.toFixed(value, precision.length, roundingFunction);
+                }
+
+                int = decimal.split('.')[0];
+
+                if (numeral._.includes(decimal, '.')) {
+                    decimal = locale.delimiters.decimal + decimal.split('.')[1];
+                } else {
+                    decimal = '';
+                }
+
+                if (optDec && Number(decimal.slice(1)) === 0) {
+                    decimal = '';
+                }
+            } else {
+                int = numeral._.toFixed(value, 0, roundingFunction);
+            }
+
+            // check abbreviation again after rounding
+            if (abbr && !abbrForce && Number(int) >= 1000 && abbr !== locale.abbreviations.trillion) {
+                int = String(Number(int) / 1000);
+
+                switch (abbr) {
+                    case locale.abbreviations.thousand:
+                        abbr = locale.abbreviations.million;
+                        break;
+                    case locale.abbreviations.million:
+                        abbr = locale.abbreviations.billion;
+                        break;
+                    case locale.abbreviations.billion:
+                        abbr = locale.abbreviations.trillion;
+                        break;
+                }
+            }
+
+
+            // format number
+            if (numeral._.includes(int, '-')) {
+                int = int.slice(1);
+                neg = true;
+            }
+
+            if (int.length < leadingCount) {
+                for (var i = leadingCount - int.length; i > 0; i--) {
+                    int = '0' + int;
+                }
+            }
+
+            if (thousands > -1) {
+                int = int.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1' + locale.delimiters.thousands);
+            }
+
+            if (format.indexOf('.') === 0) {
+                int = '';
+            }
+
+            output = int + decimal + (abbr ? abbr : '');
+
+            if (negP) {
+                output = (negP && neg ? '(' : '') + output + (negP && neg ? ')' : '');
+            } else {
+                if (signed >= 0) {
+                    output = signed === 0 ? (neg ? '-' : '+') + output : output + (neg ? '-' : '+');
+                } else if (neg) {
+                    output = '-' + output;
+                }
+            }
+
+            return output;
+        },
+        // unformats numbers separators, decimals places, signs, abbreviations
+        stringToNumber: function(string) {
+            var locale = locales[options.currentLocale],
+                stringOriginal = string,
+                abbreviations = {
+                    thousand: 3,
+                    million: 6,
+                    billion: 9,
+                    trillion: 12
+                },
+                abbreviation,
+                value,
+                i,
+                regexp;
+
+            if (options.zeroFormat && string === options.zeroFormat) {
+                value = 0;
+            } else if (options.nullFormat && string === options.nullFormat || !string.replace(/[^0-9]+/g, '').length) {
+                value = null;
+            } else {
+                value = 1;
+
+                if (locale.delimiters.decimal !== '.') {
+                    string = string.replace(/\./g, '').replace(locale.delimiters.decimal, '.');
+                }
+
+                for (abbreviation in abbreviations) {
+                    regexp = new RegExp('[^a-zA-Z]' + locale.abbreviations[abbreviation] + '(?:\\)|(\\' + locale.currency.symbol + ')?(?:\\))?)?$');
+
+                    if (stringOriginal.match(regexp)) {
+                        value *= Math.pow(10, abbreviations[abbreviation]);
+                        break;
+                    }
+                }
+
+                // check for negative number
+                value *= (string.split('-').length + Math.min(string.split('(').length - 1, string.split(')').length - 1)) % 2 ? 1 : -1;
+
+                // remove non numbers
+                string = string.replace(/[^0-9\.]+/g, '');
+
+                value *= Number(string);
+            }
+
+            return value;
+        },
+        isNaN: function(value) {
+            return typeof value === 'number' && isNaN(value);
+        },
+        includes: function(string, search) {
+            return string.indexOf(search) !== -1;
+        },
+        insert: function(string, subString, start) {
+            return string.slice(0, start) + subString + string.slice(start);
+        },
+        reduce: function(array, callback /*, initialValue*/) {
+            if (this === null) {
+                throw new TypeError('Array.prototype.reduce called on null or undefined');
+            }
+
+            if (typeof callback !== 'function') {
+                throw new TypeError(callback + ' is not a function');
+            }
+
+            var t = Object(array),
+                len = t.length >>> 0,
+                k = 0,
+                value;
+
+            if (arguments.length === 3) {
+                value = arguments[2];
+            } else {
+                while (k < len && !(k in t)) {
+                    k++;
+                }
+
+                if (k >= len) {
+                    throw new TypeError('Reduce of empty array with no initial value');
+                }
+
+                value = t[k++];
+            }
+            for (; k < len; k++) {
+                if (k in t) {
+                    value = callback(value, t[k], k, t);
+                }
+            }
+            return value;
+        },
+        /**
+         * Computes the multiplier necessary to make x >= 1,
+         * effectively eliminating miscalculations caused by
+         * finite precision.
+         */
+        multiplier: function (x) {
+            var parts = x.toString().split('.');
+
+            return parts.length < 2 ? 1 : Math.pow(10, parts[1].length);
+        },
+        /**
+         * Given a variable number of arguments, returns the maximum
+         * multiplier that must be used to normalize an operation involving
+         * all of them.
+         */
+        correctionFactor: function () {
+            var args = Array.prototype.slice.call(arguments);
+
+            return args.reduce(function(accum, next) {
+                var mn = _.multiplier(next);
+                return accum > mn ? accum : mn;
+            }, 1);
+        },
+        /**
+         * Implementation of toFixed() that treats floats more like decimals
+         *
+         * Fixes binary rounding issues (eg. (0.615).toFixed(2) === '0.61') that present
+         * problems for accounting- and finance-related software.
+         */
+        toFixed: function(value, maxDecimals, roundingFunction, optionals) {
+            var splitValue = value.toString().split('.'),
+                minDecimals = maxDecimals - (optionals || 0),
+                boundedPrecision,
+                optionalsRegExp,
+                power,
+                output;
+
+            // Use the smallest precision value possible to avoid errors from floating point representation
+            if (splitValue.length === 2) {
+              boundedPrecision = Math.min(Math.max(splitValue[1].length, minDecimals), maxDecimals);
+            } else {
+              boundedPrecision = minDecimals;
+            }
+
+            power = Math.pow(10, boundedPrecision);
+
+            // Multiply up by precision, round accurately, then divide and use native toFixed():
+            output = (roundingFunction(value + 'e+' + boundedPrecision) / power).toFixed(boundedPrecision);
+
+            if (optionals > maxDecimals - boundedPrecision) {
+                optionalsRegExp = new RegExp('\\.?0{1,' + (optionals - (maxDecimals - boundedPrecision)) + '}$');
+                output = output.replace(optionalsRegExp, '');
+            }
+
+            return output;
+        }
+    };
+
+    // avaliable options
+    numeral.options = options;
+
+    // avaliable formats
+    numeral.formats = formats;
+
+    // avaliable formats
+    numeral.locales = locales;
+
+    // This function sets the current locale.  If
+    // no arguments are passed in, it will simply return the current global
+    // locale key.
+    numeral.locale = function(key) {
+        if (key) {
+            options.currentLocale = key.toLowerCase();
+        }
+
+        return options.currentLocale;
+    };
+
+    // This function provides access to the loaded locale data.  If
+    // no arguments are passed in, it will simply return the current
+    // global locale object.
+    numeral.localeData = function(key) {
+        if (!key) {
+            return locales[options.currentLocale];
+        }
+
+        key = key.toLowerCase();
+
+        if (!locales[key]) {
+            throw new Error('Unknown locale : ' + key);
+        }
+
+        return locales[key];
+    };
+
+    numeral.reset = function() {
+        for (var property in defaults) {
+            options[property] = defaults[property];
+        }
+    };
+
+    numeral.zeroFormat = function(format) {
+        options.zeroFormat = typeof(format) === 'string' ? format : null;
+    };
+
+    numeral.nullFormat = function (format) {
+        options.nullFormat = typeof(format) === 'string' ? format : null;
+    };
+
+    numeral.defaultFormat = function(format) {
+        options.defaultFormat = typeof(format) === 'string' ? format : '0.0';
+    };
+
+    numeral.register = function(type, name, format) {
+        name = name.toLowerCase();
+
+        if (this[type + 's'][name]) {
+            throw new TypeError(name + ' ' + type + ' already registered.');
+        }
+
+        this[type + 's'][name] = format;
+
+        return format;
+    };
+
+
+    numeral.validate = function(val, culture) {
+        var _decimalSep,
+            _thousandSep,
+            _currSymbol,
+            _valArray,
+            _abbrObj,
+            _thousandRegEx,
+            localeData,
+            temp;
+
+        //coerce val to string
+        if (typeof val !== 'string') {
+            val += '';
+
+            if (console.warn) {
+                console.warn('Numeral.js: Value is not string. It has been co-erced to: ', val);
+            }
+        }
+
+        //trim whitespaces from either sides
+        val = val.trim();
+
+        //if val is just digits return true
+        if (!!val.match(/^\d+$/)) {
+            return true;
+        }
+
+        //if val is empty return false
+        if (val === '') {
+            return false;
+        }
+
+        //get the decimal and thousands separator from numeral.localeData
+        try {
+            //check if the culture is understood by numeral. if not, default it to current locale
+            localeData = numeral.localeData(culture);
+        } catch (e) {
+            localeData = numeral.localeData(numeral.locale());
+        }
+
+        //setup the delimiters and currency symbol based on culture/locale
+        _currSymbol = localeData.currency.symbol;
+        _abbrObj = localeData.abbreviations;
+        _decimalSep = localeData.delimiters.decimal;
+        if (localeData.delimiters.thousands === '.') {
+            _thousandSep = '\\.';
+        } else {
+            _thousandSep = localeData.delimiters.thousands;
+        }
+
+        // validating currency symbol
+        temp = val.match(/^[^\d]+/);
+        if (temp !== null) {
+            val = val.substr(1);
+            if (temp[0] !== _currSymbol) {
+                return false;
+            }
+        }
+
+        //validating abbreviation symbol
+        temp = val.match(/[^\d]+$/);
+        if (temp !== null) {
+            val = val.slice(0, -1);
+            if (temp[0] !== _abbrObj.thousand && temp[0] !== _abbrObj.million && temp[0] !== _abbrObj.billion && temp[0] !== _abbrObj.trillion) {
+                return false;
+            }
+        }
+
+        _thousandRegEx = new RegExp(_thousandSep + '{2}');
+
+        if (!val.match(/[^\d.,]/g)) {
+            _valArray = val.split(_decimalSep);
+            if (_valArray.length > 2) {
+                return false;
+            } else {
+                if (_valArray.length < 2) {
+                    return ( !! _valArray[0].match(/^\d+.*\d$/) && !_valArray[0].match(_thousandRegEx));
+                } else {
+                    if (_valArray[0].length === 1) {
+                        return ( !! _valArray[0].match(/^\d+$/) && !_valArray[0].match(_thousandRegEx) && !! _valArray[1].match(/^\d+$/));
+                    } else {
+                        return ( !! _valArray[0].match(/^\d+.*\d$/) && !_valArray[0].match(_thousandRegEx) && !! _valArray[1].match(/^\d+$/));
+                    }
+                }
+            }
+        }
+
+        return false;
+    };
+
+
+    /************************************
+        Numeral Prototype
+    ************************************/
+
+    numeral.fn = Numeral.prototype = {
+        clone: function() {
+            return numeral(this);
+        },
+        format: function(inputString, roundingFunction) {
+            var value = this._value,
+                format = inputString || options.defaultFormat,
+                kind,
+                output,
+                formatFunction;
+
+            // make sure we have a roundingFunction
+            roundingFunction = roundingFunction || Math.round;
+
+            // format based on value
+            if (value === 0 && options.zeroFormat !== null) {
+                output = options.zeroFormat;
+            } else if (value === null && options.nullFormat !== null) {
+                output = options.nullFormat;
+            } else {
+                for (kind in formats) {
+                    if (format.match(formats[kind].regexps.format)) {
+                        formatFunction = formats[kind].format;
+
+                        break;
+                    }
+                }
+
+                formatFunction = formatFunction || numeral._.numberToFormat;
+
+                output = formatFunction(value, format, roundingFunction);
+            }
+
+            return output;
+        },
+        value: function() {
+            return this._value;
+        },
+        input: function() {
+            return this._input;
+        },
+        set: function(value) {
+            this._value = Number(value);
+
+            return this;
+        },
+        add: function(value) {
+            var corrFactor = _.correctionFactor.call(null, this._value, value);
+
+            function cback(accum, curr, currI, O) {
+                return accum + Math.round(corrFactor * curr);
+            }
+
+            this._value = _.reduce([this._value, value], cback, 0) / corrFactor;
+
+            return this;
+        },
+        subtract: function(value) {
+            var corrFactor = _.correctionFactor.call(null, this._value, value);
+
+            function cback(accum, curr, currI, O) {
+                return accum - Math.round(corrFactor * curr);
+            }
+
+            this._value = _.reduce([value], cback, Math.round(this._value * corrFactor)) / corrFactor;
+
+            return this;
+        },
+        multiply: function(value) {
+            function cback(accum, curr, currI, O) {
+                var corrFactor = _.correctionFactor(accum, curr);
+                return Math.round(accum * corrFactor) * Math.round(curr * corrFactor) / Math.round(corrFactor * corrFactor);
+            }
+
+            this._value = _.reduce([this._value, value], cback, 1);
+
+            return this;
+        },
+        divide: function(value) {
+            function cback(accum, curr, currI, O) {
+                var corrFactor = _.correctionFactor(accum, curr);
+                return Math.round(accum * corrFactor) / Math.round(curr * corrFactor);
+            }
+
+            this._value = _.reduce([this._value, value], cback);
+
+            return this;
+        },
+        difference: function(value) {
+            return Math.abs(numeral(this._value).subtract(value).value());
+        }
+    };
+
+    /************************************
+        Default Locale && Format
+    ************************************/
+
+    numeral.register('locale', 'en', {
+        delimiters: {
+            thousands: ',',
+            decimal: '.'
+        },
+        abbreviations: {
+            thousand: 'k',
+            million: 'm',
+            billion: 'b',
+            trillion: 't'
+        },
+        ordinal: function(number) {
+            var b = number % 10;
+            return (~~(number % 100 / 10) === 1) ? 'th' :
+                (b === 1) ? 'st' :
+                (b === 2) ? 'nd' :
+                (b === 3) ? 'rd' : 'th';
+        },
+        currency: {
+            symbol: '$'
+        }
+    });
+
+    
+
+(function() {
+        numeral.register('format', 'bps', {
+            regexps: {
+                format: /(BPS)/,
+                unformat: /(BPS)/
+            },
+            format: function(value, format, roundingFunction) {
+                var space = numeral._.includes(format, ' BPS') ? ' ' : '',
+                    output;
+
+                value = value * 10000;
+
+                // check for space before BPS
+                format = format.replace(/\s?BPS/, '');
+
+                output = numeral._.numberToFormat(value, format, roundingFunction);
+
+                if (numeral._.includes(output, ')')) {
+                    output = output.split('');
+
+                    output.splice(-1, 0, space + 'BPS');
+
+                    output = output.join('');
+                } else {
+                    output = output + space + 'BPS';
+                }
+
+                return output;
+            },
+            unformat: function(string) {
+                return +(numeral._.stringToNumber(string) * 0.0001).toFixed(15);
+            }
+        });
+})();
+
+
+(function() {
+        var decimal = {
+            base: 1000,
+            suffixes: ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
+        },
+        binary = {
+            base: 1024,
+            suffixes: ['B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB']
+        };
+
+    var allSuffixes =  decimal.suffixes.concat(binary.suffixes.filter(function (item) {
+            return decimal.suffixes.indexOf(item) < 0;
+        }));
+        var unformatRegex = allSuffixes.join('|');
+        // Allow support for BPS (http://www.investopedia.com/terms/b/basispoint.asp)
+        unformatRegex = '(' + unformatRegex.replace('B', 'B(?!PS)') + ')';
+
+    numeral.register('format', 'bytes', {
+        regexps: {
+            format: /([0\s]i?b)/,
+            unformat: new RegExp(unformatRegex)
+        },
+        format: function(value, format, roundingFunction) {
+            var output,
+                bytes = numeral._.includes(format, 'ib') ? binary : decimal,
+                suffix = numeral._.includes(format, ' b') || numeral._.includes(format, ' ib') ? ' ' : '',
+                power,
+                min,
+                max;
+
+            // check for space before
+            format = format.replace(/\s?i?b/, '');
+
+            for (power = 0; power <= bytes.suffixes.length; power++) {
+                min = Math.pow(bytes.base, power);
+                max = Math.pow(bytes.base, power + 1);
+
+                if (value === null || value === 0 || value >= min && value < max) {
+                    suffix += bytes.suffixes[power];
+
+                    if (min > 0) {
+                        value = value / min;
+                    }
+
+                    break;
+                }
+            }
+
+            output = numeral._.numberToFormat(value, format, roundingFunction);
+
+            return output + suffix;
+        },
+        unformat: function(string) {
+            var value = numeral._.stringToNumber(string),
+                power,
+                bytesMultiplier;
+
+            if (value) {
+                for (power = decimal.suffixes.length - 1; power >= 0; power--) {
+                    if (numeral._.includes(string, decimal.suffixes[power])) {
+                        bytesMultiplier = Math.pow(decimal.base, power);
+
+                        break;
+                    }
+
+                    if (numeral._.includes(string, binary.suffixes[power])) {
+                        bytesMultiplier = Math.pow(binary.base, power);
+
+                        break;
+                    }
+                }
+
+                value *= (bytesMultiplier || 1);
+            }
+
+            return value;
+        }
+    });
+})();
+
+
+(function() {
+        numeral.register('format', 'currency', {
+        regexps: {
+            format: /(\$)/
+        },
+        format: function(value, format, roundingFunction) {
+            var locale = numeral.locales[numeral.options.currentLocale],
+                symbols = {
+                    before: format.match(/^([\+|\-|\(|\s|\$]*)/)[0],
+                    after: format.match(/([\+|\-|\)|\s|\$]*)$/)[0]
+                },
+                output,
+                symbol,
+                i;
+
+            // strip format of spaces and $
+            format = format.replace(/\s?\$\s?/, '');
+
+            // format the number
+            output = numeral._.numberToFormat(value, format, roundingFunction);
+
+            // update the before and after based on value
+            if (value >= 0) {
+                symbols.before = symbols.before.replace(/[\-\(]/, '');
+                symbols.after = symbols.after.replace(/[\-\)]/, '');
+            } else if (value < 0 && (!numeral._.includes(symbols.before, '-') && !numeral._.includes(symbols.before, '('))) {
+                symbols.before = '-' + symbols.before;
+            }
+
+            // loop through each before symbol
+            for (i = 0; i < symbols.before.length; i++) {
+                symbol = symbols.before[i];
+
+                switch (symbol) {
+                    case '$':
+                        output = numeral._.insert(output, locale.currency.symbol, i);
+                        break;
+                    case ' ':
+                        output = numeral._.insert(output, ' ', i + locale.currency.symbol.length - 1);
+                        break;
+                }
+            }
+
+            // loop through each after symbol
+            for (i = symbols.after.length - 1; i >= 0; i--) {
+                symbol = symbols.after[i];
+
+                switch (symbol) {
+                    case '$':
+                        output = i === symbols.after.length - 1 ? output + locale.currency.symbol : numeral._.insert(output, locale.currency.symbol, -(symbols.after.length - (1 + i)));
+                        break;
+                    case ' ':
+                        output = i === symbols.after.length - 1 ? output + ' ' : numeral._.insert(output, ' ', -(symbols.after.length - (1 + i) + locale.currency.symbol.length - 1));
+                        break;
+                }
+            }
+
+
+            return output;
+        }
+    });
+})();
+
+
+(function() {
+        numeral.register('format', 'exponential', {
+        regexps: {
+            format: /(e\+|e-)/,
+            unformat: /(e\+|e-)/
+        },
+        format: function(value, format, roundingFunction) {
+            var output,
+                exponential = typeof value === 'number' && !numeral._.isNaN(value) ? value.toExponential() : '0e+0',
+                parts = exponential.split('e');
+
+            format = format.replace(/e[\+|\-]{1}0/, '');
+
+            output = numeral._.numberToFormat(Number(parts[0]), format, roundingFunction);
+
+            return output + 'e' + parts[1];
+        },
+        unformat: function(string) {
+            var parts = numeral._.includes(string, 'e+') ? string.split('e+') : string.split('e-'),
+                value = Number(parts[0]),
+                power = Number(parts[1]);
+
+            power = numeral._.includes(string, 'e-') ? power *= -1 : power;
+
+            function cback(accum, curr, currI, O) {
+                var corrFactor = numeral._.correctionFactor(accum, curr),
+                    num = (accum * corrFactor) * (curr * corrFactor) / (corrFactor * corrFactor);
+                return num;
+            }
+
+            return numeral._.reduce([value, Math.pow(10, power)], cback, 1);
+        }
+    });
+})();
+
+
+(function() {
+        numeral.register('format', 'ordinal', {
+        regexps: {
+            format: /(o)/
+        },
+        format: function(value, format, roundingFunction) {
+            var locale = numeral.locales[numeral.options.currentLocale],
+                output,
+                ordinal = numeral._.includes(format, ' o') ? ' ' : '';
+
+            // check for space before
+            format = format.replace(/\s?o/, '');
+
+            ordinal += locale.ordinal(value);
+
+            output = numeral._.numberToFormat(value, format, roundingFunction);
+
+            return output + ordinal;
+        }
+    });
+})();
+
+
+(function() {
+        numeral.register('format', 'percentage', {
+        regexps: {
+            format: /(%)/,
+            unformat: /(%)/
+        },
+        format: function(value, format, roundingFunction) {
+            var space = numeral._.includes(format, ' %') ? ' ' : '',
+                output;
+
+            if (numeral.options.scalePercentBy100) {
+                value = value * 100;
+            }
+
+            // check for space before %
+            format = format.replace(/\s?\%/, '');
+
+            output = numeral._.numberToFormat(value, format, roundingFunction);
+
+            if (numeral._.includes(output, ')')) {
+                output = output.split('');
+
+                output.splice(-1, 0, space + '%');
+
+                output = output.join('');
+            } else {
+                output = output + space + '%';
+            }
+
+            return output;
+        },
+        unformat: function(string) {
+            var number = numeral._.stringToNumber(string);
+            if (numeral.options.scalePercentBy100) {
+                return number * 0.01;
+            }
+            return number;
+        }
+    });
+})();
+
+
+(function() {
+        numeral.register('format', 'time', {
+        regexps: {
+            format: /(:)/,
+            unformat: /(:)/
+        },
+        format: function(value, format, roundingFunction) {
+            var hours = Math.floor(value / 60 / 60),
+                minutes = Math.floor((value - (hours * 60 * 60)) / 60),
+                seconds = Math.round(value - (hours * 60 * 60) - (minutes * 60));
+
+            return hours + ':' + (minutes < 10 ? '0' + minutes : minutes) + ':' + (seconds < 10 ? '0' + seconds : seconds);
+        },
+        unformat: function(string) {
+            var timeArray = string.split(':'),
+                seconds = 0;
+
+            // turn hours and minutes into seconds and add them all up
+            if (timeArray.length === 3) {
+                // hours
+                seconds = seconds + (Number(timeArray[0]) * 60 * 60);
+                // minutes
+                seconds = seconds + (Number(timeArray[1]) * 60);
+                // seconds
+                seconds = seconds + Number(timeArray[2]);
+            } else if (timeArray.length === 2) {
+                // minutes
+                seconds = seconds + (Number(timeArray[0]) * 60);
+                // seconds
+                seconds = seconds + Number(timeArray[1]);
+            }
+            return Number(seconds);
+        }
+    });
+})();
+
+return numeral;
+}));
+
+
+/***/ }),
+/* 595 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(596);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(7)("2070ce09", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2dcf4d69\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Investment.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2dcf4d69\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Investment.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 596 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(5)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.tr-green[data-v-2dcf4d69]{\n    color: green;\n    font-weight: bold;\n}\n.tr-red[data-v-2dcf4d69]{\n    color: red;\n    font-weight: bold;\n}\n.tr-purple[data-v-2dcf4d69]{\n    color: purple;\n    font-weight: bold;\n}\n.send-button[data-v-2dcf4d69]{\n    top: 32px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 597 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("section", { staticClass: "section section-lg bg-default" }, [
+    _c("div", { staticClass: "container container-wide" }, [
+      _c("div", { staticClass: "row justify-content-sm-center" }, [
+        _c("div", { staticClass: "sections-collapsable single-post-wrap" }, [
+          _c("h3", [_vm._v("Investments")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row row-fix row-20" }, [
+            _c("div", { staticClass: "col-md-3" }, [
+              _c("div", { staticClass: "form-wrap form-wrap-validation" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass: "form-label-outside",
+                    attrs: { for: "form-1-name" }
+                  },
+                  [_vm._v("Plan")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.params.plan,
+                      expression: "params.plan"
+                    }
+                  ],
+                  staticClass: "form-input",
+                  attrs: { id: "form-1-name", type: "text", name: "name" },
+                  domProps: { value: _vm.params.plan },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.params, "plan", $event.target.value)
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-3" }, [
+              _c("div", { staticClass: "form-wrap form-wrap-validation" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass: "form-label-outside",
+                    attrs: { for: "form-1-last-name" }
+                  },
+                  [_vm._v("Frequency")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.params.frequency,
+                      expression: "params.frequency"
+                    }
+                  ],
+                  staticClass: "form-input",
+                  attrs: {
+                    id: "form-1-last-name",
+                    type: "text",
+                    name: "last-name"
+                  },
+                  domProps: { value: _vm.params.frequency },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.params, "frequency", $event.target.value)
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-3" }, [
+              _c("div", { staticClass: "form-wrap form-wrap-validation" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass: "form-label-outside",
+                    attrs: { for: "form-1-email" }
+                  },
+                  [_vm._v("Weeks")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.params.weeks,
+                      expression: "params.weeks"
+                    }
+                  ],
+                  staticClass: "form-input",
+                  attrs: { id: "form-1-email", type: "email", name: "email" },
+                  domProps: { value: _vm.params.weeks },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.params, "weeks", $event.target.value)
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-3" }, [
+              _c("div", { staticClass: "form-button" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "button button-secondary send-button",
+                    on: { click: _vm.getInvestments }
+                  },
+                  [_vm._v("Send")]
+                )
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("hr", { staticClass: "divider divider-left divider-default" }),
+          _vm._v(" "),
+          _c("div", { staticClass: "table-responsive" }, [
+            _c("table", { staticClass: "table" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.investments, function(investment, index) {
+                  return _c("tr", { class: "tr-" + investment.color }, [
+                    _c("td", [_vm._v(_vm._s(index + 1))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(investment.date))]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm._f("money")(investment.investement)))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm._f("money")(investment.limit)))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm._f("money")(investment.percent)))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm._f("money")(investment.profit)))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm._f("money")(investment.profit_acum)))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm._f("money")(investment.retirement)))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm._f("money")(investment.acum)))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm._f("money")(investment.real)))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm._f("money")(investment.real_amount)))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm._f("money")(investment.real_limit)))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm._f("money")(investment.real_percent)))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm._f("money")(investment.real_profit)))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(
+                        _vm._s(_vm._f("money")(investment.real_retirement))
+                      )
+                    ])
+                  ])
+                })
+              )
+            ])
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Week")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Fecha")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Inversion")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Limite")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Porcentaje")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Ganancia")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Ganancia Acumulada")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Retiro")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Acumulado")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Dinero")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Real Inversion")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Real Limite")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Real Porcentaje")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Real Ganancia")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Real Retiro")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-2dcf4d69", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

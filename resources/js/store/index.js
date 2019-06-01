@@ -6,6 +6,7 @@ import Post from './modules/Post.js'
 import Comment from './modules/Comment.js'
 import Language from './modules/Language.js'
 import Page from './modules/Page.js'
+import Investment from './modules/Investment.js'
 import createPersistedState from 'vuex-persistedstate'
 
 Vue.use(Vuex)
@@ -17,6 +18,7 @@ let store = new Vuex.Store({
         Comment,
         Language,
         Page,
+        Investment,
     },
     plugins:[
         createPersistedState()

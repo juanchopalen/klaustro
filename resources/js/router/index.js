@@ -2,11 +2,12 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Home from '../components/layout/Home.vue'
-import Contact from '../components/Contact.vue'
+import Contact from '../components/pages/Contact.vue'
 import Error from '../components/layout/Error.vue'
 import Blog from '../components/blog/Index.vue'
 import Post from '../components/blog/Show.vue'
 import CreatePost from '../components/blog/Create.vue'
+import Investment from '../components/pages/Investment.vue'
 
 Vue.use(Router)
 
@@ -37,6 +38,11 @@ let router = new Router({
             name: 'post',
             path: '/blog/:slug',
             component: Post
+        },
+        {
+            name: 'investment',
+            path: '/investment',
+            component: Investment
         },
 
         {

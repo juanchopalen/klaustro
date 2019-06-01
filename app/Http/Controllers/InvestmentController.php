@@ -95,6 +95,7 @@ class InvestmentController extends Controller
                 <td>". number_format($real_amount * $real_percent , 2) ."</td>
                 <td>". number_format($real_amount * $real_percent * $fee , 2) ."</td>
             </tr>";
+                $simulation[$i]['color'] = $color;
                 $simulation[$i]['week'] = $week;
                 $simulation[$i]['date'] = $date;
                 $simulation[$i]['investement'] = $investement;
@@ -105,6 +106,11 @@ class InvestmentController extends Controller
                 $simulation[$i]['retirement'] = $retirement;
                 $simulation[$i]['acum'] = $acum;
                 $simulation[$i]['real'] = $real;
+                $simulation[$i]['real_amount'] = $real_amount;
+                $simulation[$i]['real_limit'] = $real_limit;
+                $simulation[$i]['real_percent'] = $real_percent;
+                $simulation[$i]['real_profit'] = $real_amount * $real_percent;
+                $simulation[$i]['real_retirement'] = $real_amount * $real_percent * $fee;
             if ($profit_acum >= ($increment * 2)) {
                 $investement = $investement - $increment;
                 $limit = $investement * 2;
@@ -112,7 +118,7 @@ class InvestmentController extends Controller
             }
         }
         $html .= "</table>";
-        //return response()->json($simulation);
-        return $html;
+        return response()->json($simulation);
+        //return $html;
     }
 }

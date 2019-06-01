@@ -21,7 +21,7 @@
                   <li v-if="user"><a href="#">{{ user.name }}</a>
                     <!-- RD Navbar Dropdown-->
                     <ul class="rd-navbar-dropdown">
-                      <li><a href="/trading-wave?plan=1000&frequency=4&weeks=52" target="blank">{{ translate(home, 'navbar_investments') }}</a>
+                      <li><router-link  to="/investment" target="blank">{{ translate(home, 'navbar_investments') }}</router-link>
                       </li>
                       <li><a href="/logout">{{ translate(home, 'navbar_logout') }}</a>
                       </li>

@@ -59,6 +59,12 @@ Vue.prototype.translate = function(model, key){
     return translate(model, key)
 }
 
+//filters
+Vue.filter('money', function(value){
+    var numeral = require('numeral')
+    return numeral(value).format('0,0.00')
+})
+
 const app = new Vue({
     el: '#app',
     router,
