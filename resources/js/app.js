@@ -65,6 +65,11 @@ Vue.filter('money', function(value){
     return numeral(value).format('0,0.00')
 })
 
+Vue.filter('percent', function(value){
+    var numeral = require('numeral')
+    return numeral(value * 100).format('0,0.00') + '%'
+})
+
 const app = new Vue({
     el: '#app',
     router,

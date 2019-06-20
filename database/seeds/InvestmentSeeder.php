@@ -17,6 +17,14 @@ class InvestmentSeeder extends Seeder
             'limit' => '2000',
             'percent' => '0.0908',
             'retirement' => '110',
+            'created_at' => '2019-05-31'
+        ]);
+        factory(Investment::class)->create([
+            'amount' => '1100',
+            'limit' => '2200',
+            'percent' => '0.08667',
+            'retirement' => '110',
+            'created_at' => '2019-00-07'
         ]);
     }
 }

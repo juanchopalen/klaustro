@@ -17,7 +17,7 @@ class InvestmentController extends Controller
         $weeks_reinvestem = request()->frequency ? request()->frequency : 4;
         $fee = 0.93;
         $weeks = request()->weeks ? request()->weeks : 52;
-        $start = Carbon::create(2019, 5, 24, 0, 0, 0, 'America/Caracas');
+        $start = Carbon::create(2019, 6, 17, 0, 0, 0, 'America/Caracas');
         $html = "<table border='1'>
             <tr>
                 <th>Week</th>
@@ -42,8 +42,9 @@ class InvestmentController extends Controller
         $real_investement = Investment::all()->toArray();
         for ($i=0; $i < $weeks; $i++) {
             $limit = $investement * 2;
-            //$percent = 0.11715;
-            $percent = rand(100, 1300)/10000;
+            //9.08% / 8.67%
+            //$percent = rand(490, 500)/10000;
+            $percent = 1000/10000;
             $profit = $investement * $percent;
             $retirement = $profit * $fee;
             $acum += $retirement;
