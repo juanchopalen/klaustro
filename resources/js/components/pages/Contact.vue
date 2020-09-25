@@ -68,7 +68,7 @@
                 <div class="col-sm-10 col-md-6 col-lg-12">
                   <h6>{{ translate(contactPage, 'email') }}</h6>
                   <hr class="divider-thin">
-                  <article class="box-inline"><span class="icon novi-icon icon-md-smaller icon-primary mdi mdi-email-open"></span><span><a href="mailto:#">contact@klaustro.net</a></span></article>
+                  <article class="box-inline"><span class="icon novi-icon icon-md-smaller icon-primary mdi mdi-email-open"></span><span><a href="mailto:juanchopalen@gmail.com" target="_blank" rel="noopener noreferrer">juanchopalen@gmail.com</a></span></article>
                 </div>
                 <div class="col-sm-10 col-md-6 col-lg-12">
                   <h6>{{ translate(contactPage, 'work_hours') }}</h6>
