@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use App\Post;
 use App\Row;
 use App\Translation;
